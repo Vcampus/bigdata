@@ -19,6 +19,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	public int getId() {
 		return id;
 	}
@@ -48,20 +49,21 @@ public class User {
 	public void setAge(int age){
 		this.age=age;
 	}
-	
 	@Column(name="nickname")
 	public String getNickname(){
 		return nickname;
 	}
+	public void setNickname(String nickname){
+		this.nickname=nickname;
+	}
 	
-
 	@Column(name="sex")
 	public String getSex(){
 		return sex;
 	}
 	
-	public void setSx(String sex){
-		this.nickname=sex;
+	public void setSex(String sex){
+		this.sex=sex;
 	}
 	
 	

@@ -24,8 +24,12 @@ public class UserServiceImpl implements UserManageService{
 
 	public User loginByAccoutAndPassword(String userAccout, String userPwd)
 			throws LoginException {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userManageDAO.getByHQL("from User u where u.name=?", userAccout);
+		if (user==null)
+			throw new LoginException(LoginException.ACCOUNT_NOT_EXIST);
+		if (!userPwd.equals(user.getPassword()))
+			throw new LoginException(LoginException.PASSWORD_ERROR);
+		return user;
 	}
 
 	public void register(String userAccout, String userPwd, String confirmPwd)

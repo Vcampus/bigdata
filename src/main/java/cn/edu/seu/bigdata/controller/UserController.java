@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cn.edu.seu.bigdata.bean.User;
+import cn.edu.seu.bigdata.exception.LoginException;
 import cn.edu.seu.bigdata.exception.RegisterException;
 import cn.edu.seu.bigdata.service.UserManageService;
+
 
 
 
@@ -38,7 +40,7 @@ public class UserController {
 		User user = userService.findUserByID(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
-		mv.setViewName("user/view");
+		mv.setViewName("user");
 		return mv;
 	}
 
@@ -47,7 +49,7 @@ public class UserController {
 		return "user/register";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping("/register")
 	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm) {
 		
 			try {
@@ -55,8 +57,18 @@ public class UserController {
 		} catch (RegisterException e) {
 			e.printStackTrace();
 		}
-
 		return "redirect:/";
 	}
 
+	@RequestMapping("/login")
+	public String loginByAccount(@RequestParam String name, @RequestParam String password){
+			
+			try{
+				userService.loginByAccoutAndPassword(name,password);
+			} catch(LoginException e){
+				e.printStackTrace();
+			}
+			return  "redirect:/nice";
+	
+	}
 }
