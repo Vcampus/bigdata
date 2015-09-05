@@ -7,7 +7,7 @@ import cn.edu.seu.bigdata.exception.LoginException;
 import cn.edu.seu.bigdata.exception.RegisterException;
 import cn.edu.seu.bigdata.exception.UpdateUserException;
 
-@Service
+
 public interface UserManageService {
 	public User loginByAccoutAndPassword(String userAccout,String userPwd) throws LoginException;
 	public void register(String userAccout,String userPwd,String confirmPwd) throws RegisterException;
