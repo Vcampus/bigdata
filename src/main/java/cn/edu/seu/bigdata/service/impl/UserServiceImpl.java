@@ -56,9 +56,10 @@ public class UserServiceImpl implements UserManageService{
 		
 	}
 
-	public int findUserByAccount(String Account) {
+	public User findUserByAccount(String Account) {
 		// TODO Auto-generated method stub
-		return 0;
+		User user = userManageDAO.getByHQL("from User u where u.name=?", Account);
+		return user;
 	}
 
 	public boolean saveUser(User user) {

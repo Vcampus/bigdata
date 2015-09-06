@@ -40,7 +40,6 @@ public class UserController {
 		User user = userService.findUserByID(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
-		mv.setViewName("user");
 		return mv;
 	}
 
@@ -52,23 +51,33 @@ public class UserController {
 	@RequestMapping("/register")
 	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm) {
 		
-			try {
-			userService.register(name, password, confirm);
-		} catch (RegisterException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+//			try {
+//			userService.register(name, password, confirm);
+//		} catch (RegisterException e) {
+//			e.printStackTrace();
+//		}
+		return "redirect:/index/login";
 	}
 
 	@RequestMapping("/login")
 	public String loginByAccount(@RequestParam String name, @RequestParam String password){
-			
-			try{
-				userService.loginByAccoutAndPassword(name,password);
-			} catch(LoginException e){
-				e.printStackTrace();
-			}
-			return  "redirect:/nice";
-	
+		   
+//			try{
+//				userService.loginByAccoutAndPassword(name,password);
+//			} catch(LoginException e){
+//				e.printStackTrace();
+//			}
+			return  "redirect:/user/nice";	
 	}
+	
+//	@RequestMapping("/nice")
+//	public ModelAndView showMain(){
+////		User user = userService.findUserByAccount(name);
+////		User user = null ;
+//		ModelAndView mv = new ModelAndView();
+////		mv.addObject("user", user);
+//		mv.setViewName("nice");
+//		return mv;
+//	}
+
 }
