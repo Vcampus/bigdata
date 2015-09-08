@@ -19,9 +19,15 @@ import cn.edu.seu.bigdata.service.UserManageService;
 
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Controller
@@ -67,17 +73,41 @@ public class UserController {
 //			} catch(LoginException e){
 //				e.printStackTrace();
 //			}
-			return  "redirect:/user/nice";	
+		   
+			return  "redirect:/user/interest/?userid="+"1";
 	}
 	
-//	@RequestMapping("/nice")
-//	public ModelAndView showMain(){
-////		User user = userService.findUserByAccount(name);
-////		User user = null ;
-//		ModelAndView mv = new ModelAndView();
-////		mv.addObject("user", user);
-//		mv.setViewName("nice");
-//		return mv;
-//	}
-
+	@RequestMapping("/nice")
+	public ModelAndView showMain(){
+//		User user = userService.findUserByAccount(name);
+//		User user = null ;
+		ModelAndView mv = new ModelAndView();
+//		mv.addObject("user", user);
+		mv.setViewName("/user/nice");
+		return mv;
+	}
+	@RequestMapping("/interest")
+	public ModelAndView showInterest(@RequestParam Integer userid)
+	{
+		
+		
+//		User user = userService.findUserByID(id);
+		
+		User user=null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("/user/interest");
+		return mv;
+	}
+	
+	
+    @RequestMapping("/getInterest")  
+    public  @ResponseBody
+    String getInterest(@RequestBody List<Map<String,Object>> orders){
+    	return "redirct:/nice";
+    	
+    		
+    }   
+    
+	
 }

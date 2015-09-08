@@ -8,10 +8,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 
   <title></title>
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="jqueryui/style.css">
+  
   <style>
   p 
   {
@@ -19,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   h1
   {
-  font-size:50px;
+  font-size:45px;
   }
   #draggable ,#draggable1
   {
@@ -57,6 +61,7 @@ $(document).ready(function(){
 	});
 	
 });
+
 
 
   $(function() {
@@ -115,6 +120,21 @@ $(document).ready(function(){
     $(".drag").css("opacity",0.4);
     $(".drag").css({ color: "#F0378D", background: "green" });
     $("#droppable").css({ color: "#F0378D", background: "blue" });
+    var cmd=[{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"1"}, {"goodsId":"2"}, {"goodsId":"3"}]},{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"4"}, {"goodsId":"4"}, {"goodsId":"5"}]}]  
+    
+	$("#subbutton").click(function(){  
+		alert("aaa");
+         $.ajax({  
+				datatype:"json",  
+                contentType: "application/json; charset=utf-8", 
+                type: "post",
+                url:"/user/getInterest",
+                data : "aaaa",
+                success:function(data){  
+                 }  
+            });  
+            alert("b");
+        });  
     });
  </script>
 </head>
@@ -129,5 +149,6 @@ $(document).ready(function(){
 <div id="draggable1" class="ui-widget-content drag"  style=" border-radius:40px">
   <p>电影</p>
 </div>
+<div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>
 </html>
