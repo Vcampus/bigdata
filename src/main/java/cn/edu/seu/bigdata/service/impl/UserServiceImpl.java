@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserManageService{
 
 	public User loginByAccoutAndPassword(String userAccout, String userPwd)
 			throws LoginException {
-		User user = userManageDAO.getByHQL("from User u where u.name=?", userAccout);
+		User user = userManageDAO.getByHQL("from User u where u.username=?", userAccout);
 		if (user==null)
 			throw new LoginException(LoginException.ACCOUNT_NOT_EXIST);
 		if (!userPwd.equals(user.getPassword()))

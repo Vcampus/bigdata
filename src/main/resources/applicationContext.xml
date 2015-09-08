@@ -54,8 +54,8 @@
 
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="stat" />
+		
 	</bean>
-
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -76,9 +76,6 @@
 			</props>
 		</property>
 	</bean>
-
-
-
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"

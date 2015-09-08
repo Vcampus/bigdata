@@ -8,18 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="User")
 public class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="username")
 	private String name;
+	
 	private String password;
 	private String sex;
 	private String nickname;
 	private int age;
 	
+
+
+	private int taga;
+	private int tagb;
+	private int tagc;
+	private int tagd;
+	private int tage;
+	private int tagf;
+	private int tagg;
+	private int tagh;
+	private int tagi;
+	private int tagj;
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	public int getId() {
 		return id;
 	}
@@ -34,7 +52,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(name="password")
+
 	public String getPassword() {
 		return password;
 	}
@@ -42,14 +60,14 @@ public class User {
 		this.password = password;
 	}	
 	
-	@Column(name="age")
 	public int getAge(){
 		return age;
 	}
 	public void setAge(int age){
 		this.age=age;
 	}
-	@Column(name="nickname")
+
+	
 	public String getNickname(){
 		return nickname;
 	}
@@ -57,13 +75,73 @@ public class User {
 		this.nickname=nickname;
 	}
 	
-	@Column(name="sex")
 	public String getSex(){
 		return sex;
 	}
 	
 	public void setSex(String sex){
 		this.sex=sex;
+	}
+	
+	public int getTaga() {
+		return taga;
+	}
+	public void setTaga(int taga) {
+		this.taga = taga;
+	}
+	public int getTagb() {
+		return tagb;
+	}
+	public void setTagb(int tagb) {
+		this.tagb = tagb;
+	}
+	public int getTagc() {
+		return tagc;
+	}
+	public void setTagc(int tagc) {
+		this.tagc = tagc;
+	}
+	public int getTagd() {
+		return tagd;
+	}
+	public void setTagd(int tagd) {
+		this.tagd = tagd;
+	}
+	public int getTage() {
+		return tage;
+	}
+	public void setTage(int tage) {
+		this.tage = tage;
+	}
+	public int getTagf() {
+		return tagf;
+	}
+	public void setTagf(int tagf) {
+		this.tagf = tagf;
+	}
+	public int getTagg() {
+		return tagg;
+	}
+	public void setTagg(int tagg) {
+		this.tagg = tagg;
+	}
+	public int getTagh() {
+		return tagh;
+	}
+	public void setTagh(int tagh) {
+		this.tagh = tagh;
+	}
+	public int getTagi() {
+		return tagi;
+	}
+	public void setTagi(int tagi) {
+		this.tagi = tagi;
+	}
+	public int getTagj() {
+		return tagj;
+	}
+	public void setTagj(int tagj) {
+		this.tagj = tagj;
 	}
 	
 	

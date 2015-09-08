@@ -21,6 +21,7 @@ import cn.edu.seu.bigdata.service.UserManageService;
 
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -57,32 +58,31 @@ public class UserController {
 	@RequestMapping("/register")
 	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm) {
 		
-//			try {
-//			userService.register(name, password, confirm);
-//		} catch (RegisterException e) {
-//			e.printStackTrace();
-//		}
+			try {
+			userService.register(name, password, confirm);
+		} catch (RegisterException e) {
+			e.printStackTrace();
+		}
 		return "redirect:/index/login";
 	}
 
 	@RequestMapping("/login")
 	public String loginByAccount(@RequestParam String name, @RequestParam String password){
 		   
-//			try{
-//				userService.loginByAccoutAndPassword(name,password);
-//			} catch(LoginException e){
-//				e.printStackTrace();
-//			}
+			try{
+				userService.loginByAccoutAndPassword(name,password);
+			} catch(LoginException e){
+				e.printStackTrace();
+			}
 		   
 			return  "redirect:/user/interest/?userid="+"1";
 	}
 	
 	@RequestMapping("/nice")
 	public ModelAndView showMain(){
-//		User user = userService.findUserByAccount(name);
-//		User user = null ;
+		User user = null;
 		ModelAndView mv = new ModelAndView();
-//		mv.addObject("user", user);
+		mv.addObject("user", user);
 		mv.setViewName("/user/nice");
 		return mv;
 	}
@@ -100,14 +100,5 @@ public class UserController {
 		return mv;
 	}
 	
-	
-    @RequestMapping("/getInterest")  
-    public  @ResponseBody
-    String getInterest(@RequestBody List<Map<String,Object>> orders){
-    	return "redirct:/nice";
-    	
-    		
-    }   
-    
 	
 }
