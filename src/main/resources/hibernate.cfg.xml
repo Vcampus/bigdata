@@ -1,6 +1,0 @@
-<hibernate-configuration>  
-    <session-factory>  
-        <!-- 引入需要映射的类 -->  
-        <mapping class="cn.edu.seu.bigdata.User"/>  
-    </session-factory>  
-</hibernate-configuration>  
