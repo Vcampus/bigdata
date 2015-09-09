@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -16,8 +15,11 @@ public class Act {
 	private int id;
 	private int user_id;
 	private int location_id;
-	private Date times;
+	private Date starttime;
+	private double lasttime;
 	
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
@@ -38,17 +40,27 @@ public class Act {
 	public void setLocation_id(int location_id) {
 		this.location_id = location_id;
 	}
-	public Date getTimes() {
-		return times;
+	public Date getStarttime() {
+		return starttime;
 	}
 	
-	@Column(name="times",columnDefinition="timestamp")
-	public void setTimes(Date times) {
-		this.times = times;
+	@Column(name="starttime",columnDefinition="timestamp")
+	public void setStarttime(Date times) {
+		this.starttime = times;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public double getLasttime() {
+		return lasttime;
+	}
+
+
+	public void setLasttime(double lasttime) {
+		this.lasttime = lasttime;
+	}
+
 	
 
 }

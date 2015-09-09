@@ -3,7 +3,7 @@ package cn.edu.seu.bigdata.service;
 
 public interface LocationService {
 	
-	public void computerTag(int userid,boolean AddOrDelete);
+	public void computeTag(int userid, int locationid, boolean AddOrDelete);
 	
 
 }

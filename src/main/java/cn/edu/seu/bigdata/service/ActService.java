@@ -5,8 +5,8 @@ import cn.edu.seu.bigdata.bean.User;
 import cn.edu.seu.bigdata.dao.ActDAO;
 
 public interface ActService {
-  public boolean saveAct(Act act);
-  public void  deleteActByUserId();
-  public void relateUserAndLocation();
+  public void saveAct(Act act);
+  public void  deleteActByUserId(int uid);
+  public void relateUserAndLocation(int uid,int lid);
   
 }
