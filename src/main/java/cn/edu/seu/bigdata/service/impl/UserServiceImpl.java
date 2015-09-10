@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserManageService{
 
 	public User loginByAccoutAndPassword(String userAccout, String userPwd)
 			throws LoginException {
-		User user = userManageDAO.getByHQL("from User u where u.username=?", userAccout);
+		User user = userManageDAO.getByHQL("from User u where u.name=?", userAccout);
 		if (user==null)
 			throw new LoginException(LoginException.ACCOUNT_NOT_EXIST);
 		if (!userPwd.equals(user.getPassword()))
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserManageService{
 		user = new User();
 		user.setName(userAccout);
 		user.setPassword(userPwd);
-		
+		user.setTag("0,0,0,0,0,0,0,0,0,0,0");
 		userManageDAO.save(user);
 		
 	}
@@ -65,12 +65,6 @@ public class UserServiceImpl implements UserManageService{
 		// TODO Auto-generated method stub
 		User user = userManageDAO.getByHQL("from User u where u.name=?", Account);
 		return user;
-	}
-
-	public boolean saveUser(User user) {
-		// TODO Auto-generated method stub
-		userManageDAO.save(user);
-		return false;
 	}
 
 	public User findUserByID(int uid) {

@@ -50,9 +50,7 @@ public class LocationServiceImpl implements LocationService{
 			srcBegin = srcEnd;
 			srcEnd = tagLocation.indexOf(',', srcBegin+1);
 			}			
-		}
-		
-		
+		}	
 		for (int i=0;i<10;i++){
 			if (tagUser.charAt(2*i)=='1'){
 				if (AddOrDelete){
@@ -74,10 +72,22 @@ public class LocationServiceImpl implements LocationService{
 		for (int i=0;i<tag.length-1;i++){
 			tagString = tagString + tag[i]+",";
 		}
-		tagString = tagString + tag[tag.length-1];
-		
+		tagString = tagString + tag[tag.length-1];		
 		return tagString;
 		
+	}
+	public Location qryLocationByLatAndLng(double lat, double lng) {
+		// TODO Auto-generated method stub
+		Location location = locationDAO.getByHQL("from Location l where l.lat=? and l.lng=?",lat,lng);
+		return location;
+	}
+	public void saveLocation(double lat, double lng, String tag) {
+		// TODO Auto-generated method stub
+		Location location= new Location();
+		location.setLat(lat);
+		location.setLng(lng);
+		location.setTag(tag);
+		locationDAO.save(location);		
 	}
 	
 	

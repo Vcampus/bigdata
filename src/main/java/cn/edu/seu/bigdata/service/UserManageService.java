@@ -11,7 +11,6 @@ public interface UserManageService {
 	public void register(String userAccout,String userPwd,String confirmPwd) throws RegisterException;
 	public void updateUser(User user) throws UpdateUserException;
 	public User findUserByAccount(String Account) ;
-	public boolean saveUser(User user) ;
 	public User findUserByID( int uid);
 	public void deleteUSer(int uid);
 	

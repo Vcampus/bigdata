@@ -1,8 +1,6 @@
 package cn.edu.seu.bigdata.service.impl;
 
-import cn.edu.seu.bigdata.bean.Location;
-import cn.edu.seu.bigdata.service.LocationService;
-
+import static org.junit.Assert.*;
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -11,18 +9,23 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import cn.edu.seu.bigdata.service.ActService;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-public class LocationServiceImplTest extends AbstractJUnit4SpringContextTests {
-	
+public class ActServiceImplTest extends AbstractJUnit4SpringContextTests {
 	@Resource
-	private LocationService locationService;
+	ActService actService;
 	
 	@Test
-	public void testComputerTag(){
-		
+	public void testdeteteAct(){
+		actService.deleteActByUserId(1);
+	}
+	
+	@Test
+	public void testRelate(){
+		actService.relateUserToLocation(2, 3);
 	}
 	
 
