@@ -19,9 +19,16 @@ import cn.edu.seu.bigdata.service.UserManageService;
 
 
 
+
+
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Controller
@@ -40,7 +47,6 @@ public class UserController {
 		User user = userService.findUserByID(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
-		mv.setViewName("user");
 		return mv;
 	}
 
@@ -57,18 +63,42 @@ public class UserController {
 		} catch (RegisterException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/";
+		return "redirect:/index/login";
 	}
 
 	@RequestMapping("/login")
 	public String loginByAccount(@RequestParam String name, @RequestParam String password){
-			
+		   
 			try{
 				userService.loginByAccoutAndPassword(name,password);
 			} catch(LoginException e){
 				e.printStackTrace();
 			}
-			return  "redirect:/nice";
-	
+		   
+			return  "redirect:/user/interest/?userid="+"1";
 	}
+	
+	@RequestMapping("/nice")
+	public ModelAndView showMain(){
+		User user = null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("/user/nice");
+		return mv;
+	}
+	@RequestMapping("/interest")
+	public ModelAndView showInterest(@RequestParam Integer userid)
+	{
+		
+		
+//		User user = userService.findUserByID(id);
+		
+		User user=null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("/user/interest");
+		return mv;
+	}
+	
+	
 }

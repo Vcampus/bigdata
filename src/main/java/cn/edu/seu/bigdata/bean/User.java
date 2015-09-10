@@ -6,20 +6,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
-@Table(name="user")
+@Table(name="t_user")
 public class User {
+	
 	private int id;
+	
 	private String name;
+	
 	private String password;
 	private String sex;
 	private String nickname;
 	private int age;
+	private String tag;
 	
+	private Set<Location> location = new HashSet<Location>() ;
+	
+	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	public int getId() {
 		return id;
 	}
@@ -34,7 +46,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(name="password")
+
 	public String getPassword() {
 		return password;
 	}
@@ -42,14 +54,14 @@ public class User {
 		this.password = password;
 	}	
 	
-	@Column(name="age")
 	public int getAge(){
 		return age;
 	}
 	public void setAge(int age){
 		this.age=age;
 	}
-	@Column(name="nickname")
+
+	
 	public String getNickname(){
 		return nickname;
 	}
@@ -57,13 +69,28 @@ public class User {
 		this.nickname=nickname;
 	}
 	
-	@Column(name="sex")
 	public String getSex(){
 		return sex;
 	}
 	
 	public void setSex(String sex){
 		this.sex=sex;
+	}
+	
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	
+	@ManyToMany
+	public Set<Location> getLocation(){
+		return location;
+	}
+	
+	public void setLocation(Set<Location> location){
+		this.location = location;
 	}
 	
 	

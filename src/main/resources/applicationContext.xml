@@ -54,13 +54,13 @@
 
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="stat" />
+		
 	</bean>
-
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="cn.edu.seu。bigdata.bean" />
+		<property name="packagesToScan" value="cn.edu.seu.bigdata.bean" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -76,9 +76,6 @@
 			</props>
 		</property>
 	</bean>
-
-
-
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"

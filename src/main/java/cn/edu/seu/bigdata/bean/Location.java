@@ -6,32 +6,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="location")
 public class Location {
 
-	private int id;
-	
+	private int id;	
 	//	¾­¶È
 	private double lat;
-
 	//	Î³¶È
-	private double lng;
+	private double lng;	
 	private String address;
 	private String poi;
+	private String tag;
 	
-	
-	private int taga;
-	private int tagb;
-	private int tagc;
-	private int tagd;
-	private int tage;
-	private int tagf;
-	private int tagg;
-	private int tagh;
-	private int tagi;
-	private int tagj;
+	private Set<User> user = new HashSet<User>() ;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -67,64 +60,20 @@ public class Location {
 		this.poi = poi;
 	}
 	
-	public int getTaga() {
-		return taga;
+	
+	public String getTag() {
+		return tag;
 	}
-	public void setTaga(int taga) {
-		this.taga = taga;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
-	public int getTagb() {
-		return tagb;
+	
+	@ManyToMany(mappedBy="location")
+	public Set<User> getUser(){
+		return user;
 	}
-	public void setTagb(int tagb) {
-		this.tagb = tagb;
-	}
-	public int getTagc() {
-		return tagc;
-	}
-	public void setTagc(int tagc) {
-		this.tagc = tagc;
-	}
-	public int getTagd() {
-		return tagd;
-	}
-	public void setTagd(int tagd) {
-		this.tagd = tagd;
-	}
-	public int getTage() {
-		return tage;
-	}
-	public void setTage(int tage) {
-		this.tage = tage;
-	}
-	public int getTagf() {
-		return tagf;
-	}
-	public void setTagf(int tagf) {
-		this.tagf = tagf;
-	}
-	public int getTagg() {
-		return tagg;
-	}
-	public void setTagg(int tagg) {
-		this.tagg = tagg;
-	}
-	public int getTagh() {
-		return tagh;
-	}
-	public void setTagh(int tagh) {
-		this.tagh = tagh;
-	}
-	public int getTagi() {
-		return tagi;
-	}
-	public void setTagi(int tagi) {
-		this.tagi = tagi;
-	}
-	public int getTagj() {
-		return tagj;
-	}
-	public void setTagj(int tagj) {
-		this.tagj = tagj;
+	
+	public void setUser(Set<User> user){
+		this.user = user;
 	}
 }

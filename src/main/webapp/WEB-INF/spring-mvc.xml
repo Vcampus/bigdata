@@ -34,8 +34,6 @@
 	
 	<!-- 定义无需Controller的url<->view直接映射 -->
 	<mvc:view-controller path="/" view-name="index"/>
-	<mvc:view-controller path="bigdata/login" view-name="login"/>
-	<mvc:view-controller path="/register" view-name="/WEB-INF/views/user/register"/>
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
 </beans>

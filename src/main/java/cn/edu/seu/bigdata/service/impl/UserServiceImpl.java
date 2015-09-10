@@ -11,6 +11,10 @@ import cn.edu.seu.bigdata.exception.RegisterException;
 import cn.edu.seu.bigdata.exception.UpdateUserException;
 import cn.edu.seu.bigdata.service.UserManageService;
 
+import cn.edu.seu.bigdata.bean.Location;
+import cn.edu.seu.bigdata.dao.LocationDAO;
+
+
 @Service("userManageService")
 @Transactional
 public class UserServiceImpl implements UserManageService{
@@ -24,7 +28,7 @@ public class UserServiceImpl implements UserManageService{
 
 	public User loginByAccoutAndPassword(String userAccout, String userPwd)
 			throws LoginException {
-		User user = userManageDAO.getByHQL("from User u where u.name=?", userAccout);
+		User user = userManageDAO.getByHQL("from User u where u.username=?", userAccout);
 		if (user==null)
 			throw new LoginException(LoginException.ACCOUNT_NOT_EXIST);
 		if (!userPwd.equals(user.getPassword()))
@@ -53,27 +57,34 @@ public class UserServiceImpl implements UserManageService{
 
 	public void updateUser(User user) throws UpdateUserException {
 		// TODO Auto-generated method stub
+		userManageDAO.update(user);
 		
 	}
 
-	public int findUserByAccount(String Account) {
+	public User findUserByAccount(String Account) {
 		// TODO Auto-generated method stub
-		return 0;
+		User user = userManageDAO.getByHQL("from User u where u.name=?", Account);
+		return user;
 	}
 
 	public boolean saveUser(User user) {
 		// TODO Auto-generated method stub
+		userManageDAO.save(user);
 		return false;
 	}
 
 	public User findUserByID(int uid) {
 		// TODO Auto-generated method stub
-		return null;
+		User user = userManageDAO.getByHQL("from User u where u.id=?", uid);
+		return user;
 	}
-
-	public void deleteUSer(String uid) {
-		// TODO Auto-generated method stub
+	
+	//删除数据库中用户的信息并删除Action表中与该用户有关的信息同时更新location的tag信息
+	public void deleteUSer(int uid) {
+		User user = userManageDAO.getByHQL("from User u where u.id=?", uid);
+		userManageDAO.deleteById(uid);			
 		
+
 	}
 
 }
