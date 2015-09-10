@@ -13,6 +13,7 @@ import cn.edu.seu.bigdata.service.LocationService;
 import cn.edu.seu.bigdata.service.UserManageService;
 
 @Service("locationService")
+@Transactional
 public class LocationServiceImpl implements LocationService{
 	private UserManageDAO userManageDAO;
 	private LocationDAO locationDAO;

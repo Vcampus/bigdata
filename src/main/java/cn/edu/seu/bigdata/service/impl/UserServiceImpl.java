@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserManageService{
 		user = new User();
 		user.setName(userAccout);
 		user.setPassword(userPwd);
-		user.setTag("0,0,0,0,0,0,0,0,0,0,0");
+		user.setTag("0,0,0,0,0,0,0,0,0,0");
 		userManageDAO.save(user);
 		
 	}

@@ -18,12 +18,15 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 public class LocationServiceImplTest extends AbstractJUnit4SpringContextTests {
 	
 	@Resource
-	private LocationService locationService;
+	 LocationService locationService;
 	
 	@Test
-	public void testComputerTag(){
-		
+	public void  qryLocationByLatAndLng(){
+		locationService.qryLocationByLatAndLng(111.2323225, 125.1111111);
 	}
+	
+
+	
 	
 
 }

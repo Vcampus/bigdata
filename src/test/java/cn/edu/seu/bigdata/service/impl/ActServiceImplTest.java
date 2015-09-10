@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import java.util.Date;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -20,12 +21,18 @@ public class ActServiceImplTest extends AbstractJUnit4SpringContextTests {
 	
 	@Test
 	public void testdeteteAct(){
-		actService.deleteActByUserId(1);
+		actService.deleteActByUserId(5);
 	}
 	
 	@Test
 	public void testRelate(){
 		actService.relateUserToLocation(2, 3);
+	}
+	
+	@Test
+	public void testSaveAct(){
+		
+		actService.saveAct(2, 3);
 	}
 	
 
