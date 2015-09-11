@@ -33,19 +33,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     height: 50px;
     padding: 0.5em; 
 	text-align: center;
+	position:relative 
    }
   #droppable 
   {
     width: 150px;
     height: 150px;
+    left :150px;
     padding: 0.5em;
-    margin: 10px;
+    margin: 10px ;
     text-align: center;
+    position:relative 
   }
+  #aaa img{border-radius:90px}
+
   </style>
 <script>
 
 $(document).ready(function(){
+
  
     $("#draggable").animate({
       left:'-10px',
@@ -64,9 +70,8 @@ $(document).ready(function(){
 	
 });
 
-
-
   $(function() {
+  
    var	counts =new Array (0,0,0,0,0,0,0,0,0,0);
     $( ".drag" ).draggable({
         revert: "valid",
@@ -100,10 +105,11 @@ $(document).ready(function(){
 
         // 改变透明度以及颜色
     $("#droppable").css("opacity",0.4);
+    $("#droppable1").css("opacity",0.5);
     $(".drag").css("opacity",0.4);
     $(".drag").css({ color: "#F0378D", background: "green" });
     $("#droppable").css({ color: "#F0378D", background: "blue" });
-    var cmd=[{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"1"}, {"goodsId":"2"}, {"goodsId":"3"}]},{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"4"}, {"goodsId":"4"}, {"goodsId":"5"}]}]  
+     $("#droppable1").css({ color: "#F0378D", background: "blue" });
     
 	$("#subbutton").click(function(){  
 		 MakeForm();
@@ -140,14 +146,16 @@ $(document).ready(function(){
     // 删除该 form  
     document.body.removeChild(form1);  
 }  
+
+
  </script>
 
 <body>
-
-<div id="1" class="ui-widget-content drag"  style=" border-radius:40px">
+<div>
+<div id="1" class="ui-widget-content drag "  style=" border-radius:40px">
   <p>旅游</p>
   </div>
-  <div id="2" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="2" class="ui-widget-content drag "  style=" border-radius:40px">
   <p>电影</p>
   </div>
   <div id="3" class="ui-widget-content drag"  style=" border-radius:40px">
@@ -159,9 +167,11 @@ $(document).ready(function(){
   <div id="5" class="ui-widget-content drag"  style=" border-radius:40px">
   <p>运动</p>
 </div>
-<div id="droppable" class="ui-widget-header " style=" border-radius:90px">
-  <h1>用户</h1>
+<div id="droppable" class="ui-widget-header " style=" border-radius:90px" >
+<div id="aaa">
+<img src ="/bigdata/static/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg" width="150" height="150">
 </div>
+  </div>>
 <div id="6" class="ui-widget-content drag"  style=" border-radius:40px">
   <p>购物狂</p>
   </div>
@@ -177,6 +187,7 @@ $(document).ready(function(){
   <div id="10" class="ui-widget-content drag"  style=" border-radius:40px">
   <p>摄影</p>
   
+</div>
 </div>
 <div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>
