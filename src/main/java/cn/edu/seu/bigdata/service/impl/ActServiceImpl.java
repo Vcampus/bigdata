@@ -1,5 +1,6 @@
 package cn.edu.seu.bigdata.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,39 +28,65 @@ public class ActServiceImpl implements ActService{
 	
 	
 	@Autowired
-	public void setUserManageDAO(UserManageDAO userManageDAO) {
-		this.userManageDAO = userManageDAO;
+	public void setActDAO(ActDAO actDAO) {
+		this.actDAO = actDAO;
 	}
+	
 	@Autowired
 	public void setLocationDAO(LocationDAO locationDAO) {
 		this.locationDAO = locationDAO;
 	}
 	
 	@Autowired
-	public void setLocationDAO(ActDAO actDAO) {
-		this.actDAO = actDAO;
+	public void setUserManageDAO(UserManageDAO userManageDAO) {
+		this.userManageDAO = userManageDAO;
 	}
+
+	
+	
 
 	public void saveAct(int uid,int lid) {
 		// TODO Auto-generated method stub
-		Act act = actDAO.getByHQL("from Act a where a.user_id=? and a.location_id=?",uid,lid);
-		if (act==null){			
-			act = new Act();
-			act.setUser_id(uid);
-			act.setLocation_id(lid);
-			Date date = new Date(); 
-			act.setStarttime(date);
-			act.setLasttime(1.0/60);
-		} 
-		else{
-			act.setLasttime(act.getLasttime()+1.0/60);
-			System.out.print(act.getLasttime()+1/60);
-			if (act.getLasttime()>=100)
+		Date date = new Date(); 
+		Date actPervious;
+		double lasted = 0;
+		
+		Calendar cal=Calendar.getInstance();
+		Calendar calPervious = Calendar.getInstance();
+		cal.setTime(date);
+		
+		boolean flag=false;
+		List<Act> act = actDAO.getListByHQL("from Act a where a.user_id=? and a.location_id=?",uid,lid);
+		if (!act.isEmpty()){	
+			for (int i=0;i<act.size();i++)
 			{
-				relateUserToLocation(uid,lid);
+				Act actPer = act.get(i);
+				actPervious = actPer.getRecent_active();
+				calPervious.setTime(actPervious);
+				calPervious.add(Calendar.MINUTE, 6);
+				if (calPervious.after(cal)){
+					flag = true;
+					actPer.setLasttime(actPer.getLasttime()+5.0/60);
+					actPer.setRecent_active(date);
+					actDAO.update(actPer);
+				}	
+				lasted = lasted + actPer.getLasttime();
 			}
+			
+			if (lasted>=100)
+				relateUserToLocation(uid,lid);	
 		}
-		actDAO.save(act);
+		if ((act.isEmpty()) ||(flag=false)){
+			Act actNow = new Act();
+			
+			actNow.setUser_id(uid);
+			actNow.setLocation_id(lid);
+			
+			actNow.setStarttime(date);
+			actNow.setLasttime(5.0/60);
+			actNow.setRecent_active(date);
+			actDAO.save(actNow);
+		} 	
 	}
 
 	public void relateUserToLocation(int uid, int lid ) {

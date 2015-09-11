@@ -25,6 +25,7 @@ public class Location {
 	private String tag;
 	
 	private Set<User> user = new HashSet<User>() ;
+//	private Set<User> userActive = new  HashSet<User>();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -76,4 +77,10 @@ public class Location {
 	public void setUser(Set<User> user){
 		this.user = user;
 	}
+//	public Set<User> getUserActive() {
+//		return userActive;
+//	}
+//	public void setUserActive(Set<User> userActive) {
+//		this.userActive = userActive;
+//	}
 }

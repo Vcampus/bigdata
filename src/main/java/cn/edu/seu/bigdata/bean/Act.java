@@ -17,8 +17,8 @@ public class Act {
 	private int location_id;
 	private Date starttime;
 	private double lasttime;
+	private Date recent_active;
 	
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,15 +36,17 @@ public class Act {
 	}
 	public int getLocation_id() {
 		return location_id;
-	}
+	} 
 	public void setLocation_id(int location_id) {
 		this.location_id = location_id;
 	}
+	
+	@Column(name="starttime",columnDefinition="timestamp")
 	public Date getStarttime() {
 		return starttime;
 	}
 	
-	@Column(name="starttime",columnDefinition="timestamp")
+	
 	public void setStarttime(Date times) {
 		this.starttime = times;
 	}
@@ -61,6 +63,18 @@ public class Act {
 		this.lasttime = lasttime;
 	}
 
+	@Column(name="recent_active",columnDefinition="timestamp")
+	public Date getRecent_active() {
+		return recent_active;
+	}
+
+
+	public void setRecent_active(Date recent_active) {
+		this.recent_active = recent_active;
+	}
+
+	
+	
 	
 
 }
