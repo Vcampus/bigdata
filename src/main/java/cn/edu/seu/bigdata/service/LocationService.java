@@ -9,9 +9,8 @@ import cn.edu.seu.bigdata.bean.User;
 
 public interface LocationService {
 	
-	public void computeTag(int userid, int locationid, boolean AddOrDelete);
 	public Location qryLocationByLatAndLng(double lat,double lng);
-	public void saveLocation(double lat,double lng,String tag);
+	public Location saveLocation(double lat,double lng,String tag,String poi,String address);
 	//lat 纬度，lng 经度 precision 以米为单位的半径圈 
 	public List<Location> getNearbyLocation(double lat,double lng,int precision);
 	public List<User> getNearbyUser(int lid);

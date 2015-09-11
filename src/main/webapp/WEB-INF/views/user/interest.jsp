@@ -10,12 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <title></title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="jqueryui/style.css">
-  
+  <script src="/bigdata/static/jquery.ui.touch-punch.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+ </head>
   <style>
   p 
   {
@@ -25,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   {
   font-size:45px;
   }
-  #draggable ,#draggable1
+  .drag
   {
     width: 50px; 
     height: 50px;
@@ -65,33 +67,12 @@ $(document).ready(function(){
 
 
   $(function() {
-   var	counts =new Array (0,0,0);
-    $( "#draggable" ).draggable({
+   var	counts =new Array (0,0,0,0,0,0,0,0,0,0);
+    $( ".drag" ).draggable({
         revert: "valid",
         stop: function() {
-            counts[0]++;
-			if (counts[0] % 2 ==1)
-				{
-				$(this)
-				.addClass( "ui-state-highlight" );
-				$(this)
-				.css({ color: "#F0378D", background: "blue" });
-				}
-			else
-				{
-				$(this)
-				.removeClass( "ui-state-highlight" );
-				$(this)
-				.css({ color: "#F0378D", background: "green" });
-				}
-    	}
-    });
-
-	$( "#draggable1" ).draggable({
-        revert: "valid",
-        stop: function() {
-        	counts[1]++;
-            if (counts[1] % 2 ==1)
+       var k=$(this).attr('id');
+			if (counts[k-1] % 2 ==1)
 				{
 				$(this)
 				.addClass( "ui-state-highlight" );
@@ -112,6 +93,8 @@ $(document).ready(function(){
       activeClass: "ui-state-default ",
       hoverClass: "ui-state-hover",
       drop: function( event, ui ) {
+      var k=ui.draggable.attr('id');
+      counts[k-1]++;
       }
     });
 
@@ -158,17 +141,42 @@ $(document).ready(function(){
     document.body.removeChild(form1);  
 }  
  </script>
-</head>
+
 <body>
 
-<div id="draggable" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>读书</p>
+<div id="1" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>旅游</p>
+  </div>
+  <div id="2" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>电影</p>
+  </div>
+  <div id="3" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>美食</p>
+  </div>
+  <div id="4" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>电影</p>
+  </div>
+  <div id="5" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>运动</p>
 </div>
 <div id="droppable" class="ui-widget-header " style=" border-radius:90px">
   <h1>用户</h1>
 </div>
-<div id="draggable1" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>电影</p>
+<div id="6" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>购物狂</p>
+  </div>
+  <div id="7" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>手机控</p>
+  </div>
+  <div id="8" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>动漫</p>
+  </div>
+  <div id="9" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>K歌</p>
+  </div>
+  <div id="10" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>摄影</p>
+  
 </div>
 <div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>

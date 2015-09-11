@@ -55,7 +55,7 @@ public class ActServiceImpl implements ActService{
 		Calendar calPervious = Calendar.getInstance();
 		cal.setTime(date);
 		
-		boolean flag=false;
+		boolean flag = false;
 		List<Act> act = actDAO.getListByHQL("from Act a where a.user_id=? and a.location_id=?",uid,lid);
 		if (!act.isEmpty()){	
 			for (int i=0;i<act.size();i++)
