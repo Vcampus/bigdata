@@ -33,41 +33,135 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     height: 50px;
     padding: 0.5em; 
 	text-align: center;
-	position:relative 
+	position:relative ;
+	margin-left:4em;
+	
    }
   #droppable 
   {
     width: 150px;
     height: 150px;
-    left :150px;
+    left:197px;
+	top:-198px;
+   
     padding: 0.5em;
-    margin: 10px ;
     text-align: center;
-    position:relative 
+    position:relative
   }
   #aaa img{border-radius:90px}
+  #content
+  {width:500px;
+  height:500px;
+  }
 
   </style>
 <script>
 
 $(document).ready(function(){
+   var i=1;
+   var eve=["旅游","电影","美食","运动","购物狂","动漫","手机控","户外","K歌","摄影"];
+   for (i;i<=5;i++)
+   {
+   var aa=document.createElement('div');
+   var bb=document.createElement('p');
+   bb.innerHTML=eve[i-1];
+	aa.setAttribute("id",i);
+	aa.appendChild(bb);
+	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("style", "border-radius:40px");
+	var cc = document.getElementById("content");
+	cc.appendChild(aa);
+		if (i == 1){
+	$("#1").animate({speed :'slow',easing:'swing',left: '312px',top: '240px',bottom: '10px'});
+	}
+		if (i == 2){
+	$("#2").animate({speed :'slow',easing:'swing',left: '209px', top: '80px',bottom: '10px'});
+	}
+		if (i == 3){
+	  $("#3").animate({speed :'slow',easing:'swing',left: '129px', top: '119px',bottom: '10px'});
+	}
+		if (i == 4){
+  $("#4").animate({speed :'slow',easing:'swing',left: '-35px', top: '57px',bottom: '10px'});
+	}
+		if (i == 5){
+ $("#5").animate({speed :'slow',easing:'swing',left: '18px', top: '292px',bottom: '10px'});
+	}
+	
+
+   }
+   
+   var hh=document.createElement('div');
+   hh.setAttribute("id","droppable");
+   hh.setAttribute("class","ui-widget-header  ui-droppable");
+   hh.setAttribute("style","border-radius: 90px; opacity: 0.4; color: rgb(240, 55, 141); background: blue; left :207px; top :-356px");
+   var ii=document.createElement('div');
+   ii.setAttribute("id","aaa");
+   var jj=document.createElement('img');
+   jj.setAttribute("src","/bigdata/static/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg");
+   jj.setAttribute("width","150");
+   jj.setAttribute("height","150");
+    ii.appendChild(jj);
+   hh.appendChild(ii);
+  
+   cc.appendChild(hh);
+   for (i=6;i<=10;i++)
+   {
+      var aa=document.createElement('div');
+   var bb=document.createElement('p');
+   bb.innerHTML=eve[i-1];
+	aa.setAttribute("id",i);
+	aa.appendChild(bb);
+	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("style", "border-radius:40px");
+	cc = document.getElementById("content");
+    cc.appendChild(aa);
+		if (i == 6){
+  $("#6").animate({speed :'slow',easing:'swing',left: '54px', top: '-118px',bottom: '10px'});
+	}
+		if (i == 7){
+  $("#7").animate({speed :'slow',easing:'swing',left: '464px', top: '-344px',bottom: '10px'});
+	}
+		if (i == 8){
+  $("#8").animate({speed :'slow',easing:'swing',left: '203px', top: '-135px',bottom: '10px'});
+	}
+		if (i == 9){
+  $("#9").animate({speed :'slow',easing:'swing',left: '353px', top: '-324px',bottom: '10px'});
+	}
+			if (i == 10){
+  $("#10").animate({speed :'slow',easing:'swing',left: '395px', top: '-221px',bottom: '10px'});
+	}
+	
+   }
 
  
-    $("#draggable").animate({
-      left:'-10px',
-      opacity:'0.2',
-      bottom:'10px',
-      speed :'slow',
-      easing:'swing'
-	});
-	$("#draggable1").animate({
-      left:'50px',
-      opacity:'0.2',
-      bottom:'10px',
-      speed :'slow',
-      easing:'swing'
-	});
-	
+
+	var dd= document.createElement('div');
+	dd.setAttribute("data-corners", "true");
+	dd.setAttribute("data-shadow", "true");
+	dd.setAttribute("data-iconshadow", "true" );
+	dd.setAttribute("data-wrapperels", "span");
+	dd.setAttribute("data-theme", "c");
+	dd.setAttribute("data-disabled", "false");
+	dd.setAttribute("class", "ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all");
+	dd.setAttribute("aria-disabled", "false");
+	var ee=document.createElement('span');
+	ee.setAttribute("class","ui-btn-inner");
+	var ff=document.createElement('span');
+	ff.setAttribute("class","ui-btn-text");
+	ff.innerHTML="OK!";
+	ee.appendChild(ff);
+	dd.appendChild(ee);
+
+	var gg=document.createElement('input');
+	gg.setAttribute("type","button");
+	gg.setAttribute("class","ui-btn-hidden");
+	dd.appendChild(gg);
+		cc.appendChild(dd);
+		
+		$(".drag").fadeIn("slow");
+
+
+ 
 });
 
   $(function() {
@@ -109,13 +203,13 @@ $(document).ready(function(){
     $(".drag").css("opacity",0.4);
     $(".drag").css({ color: "#F0378D", background: "green" });
     $("#droppable").css({ color: "#F0378D", background: "blue" });
-     $("#droppable1").css({ color: "#F0378D", background: "blue" });
+    $("#droppable1").css({ color: "#F0378D", background: "blue" });
     
 	$("#subbutton").click(function(){  
 		 MakeForm();
     });
     });
-    function MakeForm()  
+ /*   function MakeForm()  
 {  
   
     // 创建一个 form  
@@ -146,49 +240,12 @@ $(document).ready(function(){
     // 删除该 form  
     document.body.removeChild(form1);  
 }  
-
+*/
 
  </script>
 
 <body>
-<div>
-<div id="1" class="ui-widget-content drag "  style=" border-radius:40px">
-  <p>旅游</p>
-  </div>
-  <div id="2" class="ui-widget-content drag "  style=" border-radius:40px">
-  <p>电影</p>
-  </div>
-  <div id="3" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>美食</p>
-  </div>
-  <div id="4" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>电影</p>
-  </div>
-  <div id="5" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>运动</p>
+<div id="content">
 </div>
-<div id="droppable" class="ui-widget-header " style=" border-radius:90px" >
-<div id="aaa">
-<img src ="/bigdata/static/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg" width="150" height="150">
-</div>
-  </div>>
-<div id="6" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>购物狂</p>
-  </div>
-  <div id="7" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>手机控</p>
-  </div>
-  <div id="8" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>动漫</p>
-  </div>
-  <div id="9" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>K歌</p>
-  </div>
-  <div id="10" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>摄影</p>
-  
-</div>
-</div>
-<div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>
 </html>

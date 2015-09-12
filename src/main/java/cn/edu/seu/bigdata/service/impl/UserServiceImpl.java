@@ -42,12 +42,15 @@ public class UserServiceImpl implements UserManageService{
 			throws RegisterException {
 		// TODO Auto-generated method stub
 		if(userPwd==null||!userPwd.equals(confirmPwd)){
-			throw new RegisterException(RegisterException.CONFIRM_ERROR);
+			throw new RegisterException("CONFIRM_ERROR");
+		}
+		if (userPwd.length()<6){
+			throw new RegisterException("PASSWORD_TOO_EASY");
 		}
 		
 		User user = userManageDAO.getByHQL("from User u where u.name=?", userAccout);
 		if(user !=null){
-			throw new RegisterException(RegisterException.ACCOUNT_ALREADY_EXISIT);
+			throw new RegisterException("ACCOUNT_ALREADY_EXISIT");
 		}
 		user = new User();
 		user.setName(userAccout);

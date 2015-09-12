@@ -77,10 +77,5 @@ public class Location {
 	public void setUser(Set<User> user){
 		this.user = user;
 	}
-//	public Set<User> getUserActive() {
-//		return userActive;
-//	}
-//	public void setUserActive(Set<User> userActive) {
-//		this.userActive = userActive;
-//	}
+
 }
