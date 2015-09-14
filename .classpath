@@ -29,25 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Software/java/maven/apache-maven-3.3.3/mvnRespo/antlr/antlr/2.7.7/antlr-2.7.7.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="antlr"/>
-			<attribute name="maven.artifactId" value="antlr"/>
-			<attribute name="maven.version" value="2.7.7"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="E:/Software/MyEclipse/aa/binary/com.sun.java.jdk7.win32.x86_64_1.7.0.u45/lib/tools.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-			<attribute name="maven.groupId" value="com.alibaba"/>
-			<attribute name="maven.artifactId" value="tools"/>
-			<attribute name="maven.version" value="1.8.0"/>
-			<attribute name="maven.scope" value="system"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
