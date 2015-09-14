@@ -10,12 +10,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <title></title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <script src="/bigdata/static/jquery.ui.touch-punch.min.js"></script>
+  <script src="/bigdata/static/js/jquery.ui.touch-punch.min.js"></script>
   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
  </head>
   <style>
@@ -27,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   {
   font-size:45px;
   }
+  
   .drag
   {
     width: 50px; 
@@ -34,9 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     padding: 0.5em; 
 	text-align: center;
 	position:fixed ;
-	
+	top: 50px;
+	left:50px;
    }
-  #droppable 
+
+#droppable
+
   {
     width: 150px;
     height: 150px;
@@ -44,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     text-align: center;
     position:fixed;
     top:100px;
-    left:200px
+    left:100px
     
   }
   #aaa img{border-radius:90px}
@@ -53,9 +56,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   height:500px;
   }
   
-  #1{top:2%;left:6%}
-  #2{top:10%;left:15%}
-  #3{top:20%;left:20%}
 
   </style>
 <script>
@@ -101,7 +101,7 @@ var cc = document.getElementById("content");
    var ii=document.createElement('div');
    ii.setAttribute("id","aaa");
    var jj=document.createElement('img');
-   jj.setAttribute("src","/bigdata/static/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg");
+   jj.setAttribute("src","/bigdata/static/image/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg");
    jj.setAttribute("width","150");
    jj.setAttribute("height","150");
     ii.appendChild(jj);
@@ -161,7 +161,8 @@ var cc = document.getElementById("content");
 	dd.appendChild(gg);
 		cc.appendChild(dd);
 		*/
-		$("#2").animate({left:' 278px', top:' 182px'});
+$("#1").animate({left:' 278px', top:' 182px'});
+$("#2").animate({left:' 278px', top:' 182px'});
 $("#3").animate({left:' 129px', top:' 119px'});
 $("#4").animate({left:' -35px', top:' 57px'});
 $("#5").animate({left:' 18px', top:' 292px'});
@@ -170,7 +171,7 @@ $("#7").animate({left:' 464px', top:' -344px'});
 $("#8").animate({left:' 203px', top:' -135px'});
 $("#9").animate({left:' 353px', top:' -324px'});
 $("#10").animate({left:' 395px', top:' -221px'});
-		$(".drag").fadeIn("slow");
+$(".drag").fadeIn("slow");
 
 
  
