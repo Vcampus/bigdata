@@ -19,15 +19,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<link rel="stylesheet" href="static/css/jquery.mobile-1.4.5.min.css">
+  	<link rel="stylesheet" href="static/mapcss/homepage_map.css">
+  	<script src="static/js/jquery.js"></script>
+  	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>   
 
   </head>
   
   <body>
-        <form action="/bigdata/user/login" method="post">
-	用户名：<input type="text" name="name"/><br/>
-	密码:<input type="text" name="password"/><br/>
-	<input type="submit" value="登录"/>
-</form>
+  <div data-role="page" id="loginpage">
+  
+  	<div data-role="header" data-position="fixed" >
+    <h1>很高兴遇见你</h1>
+    <a href="/bigdata/user/register" title="注册新用户" data-icon="search" data-iconpos="right" data-transition="slide">注册</a>
+  	</div>
+	
+	<div data-role="content">
+  	<form method="post" action="/bigdata/user/login">
+    <div data-role="fieldcontain">
+    <label for="name">账户：</label>
+    <input type="text" name="name" id="name">
+
+    <label for="password">密码：</label>
+    <input type="text" name="password" id="password">
+    <input type="submit" value="登录"/>
+  	</form>
+	</div>
+	
+	<div data-role="footer" data-position="fixed" data-fullscreen="true" id="toMyMark">
+    <h1>我的位置</h1>
+  	</div>
+</div> 
    
   </body>
 </html>
