@@ -33,32 +33,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     height: 50px;
     padding: 0.5em; 
 	text-align: center;
-	position:relative ;
-	margin-left:4em;
+	position:fixed ;
 	
    }
   #droppable 
   {
     width: 150px;
     height: 150px;
-    left:197px;
-	top:-198px;
-   
     padding: 0.5em;
     text-align: center;
-    position:relative
+    position:fixed;
+    top:100px;
+    left:200px
+    
   }
   #aaa img{border-radius:90px}
   #content
   {width:500px;
   height:500px;
   }
+  
+  #1{top:2%;left:6%}
+  #2{top:10%;left:15%}
+  #3{top:20%;left:20%}
 
   </style>
 <script>
 
 $(document).ready(function(){
-   var i=1;
+var cc = document.getElementById("content");
+ /*  var i=1;
    var eve=["旅游","电影","美食","运动","购物狂","动漫","手机控","户外","K歌","摄影"];
    for (i;i<=5;i++)
    {
@@ -89,11 +93,11 @@ $(document).ready(function(){
 	
 
    }
-   
+   */
    var hh=document.createElement('div');
    hh.setAttribute("id","droppable");
    hh.setAttribute("class","ui-widget-header  ui-droppable");
-   hh.setAttribute("style","border-radius: 90px; opacity: 0.4; color: rgb(240, 55, 141); background: blue; left :207px; top :-356px");
+   hh.setAttribute("style","border-radius: 90px; opacity: 0.4; color: rgb(240, 55, 141); background: blue");
    var ii=document.createElement('div');
    ii.setAttribute("id","aaa");
    var jj=document.createElement('img');
@@ -104,7 +108,7 @@ $(document).ready(function(){
    hh.appendChild(ii);
   
    cc.appendChild(hh);
-   for (i=6;i<=10;i++)
+/*   for (i=6;i<=10;i++)
    {
       var aa=document.createElement('div');
    var bb=document.createElement('p');
@@ -115,7 +119,7 @@ $(document).ready(function(){
 	aa.setAttribute("style", "border-radius:40px");
 	cc = document.getElementById("content");
     cc.appendChild(aa);
-		if (i == 6){
+	if (i == 6){
   $("#6").animate({speed :'slow',easing:'swing',left: '54px', top: '-118px',bottom: '10px'});
 	}
 		if (i == 7){
@@ -133,7 +137,6 @@ $(document).ready(function(){
 	
    }
 
- 
 
 	var dd= document.createElement('div');
 	dd.setAttribute("data-corners", "true");
@@ -157,7 +160,16 @@ $(document).ready(function(){
 	gg.setAttribute("class","ui-btn-hidden");
 	dd.appendChild(gg);
 		cc.appendChild(dd);
-		
+		*/
+		$("#2").animate({left:' 278px', top:' 182px'});
+$("#3").animate({left:' 129px', top:' 119px'});
+$("#4").animate({left:' -35px', top:' 57px'});
+$("#5").animate({left:' 18px', top:' 292px'});
+$("#6").animate({left:' 54px', top:' -118px'});
+$("#7").animate({left:' 464px', top:' -344px'});
+$("#8").animate({left:' 203px', top:' -135px'});
+$("#9").animate({left:' 353px', top:' -324px'});
+$("#10").animate({left:' 395px', top:' -221px'});
 		$(".drag").fadeIn("slow");
 
 
@@ -199,11 +211,8 @@ $(document).ready(function(){
 
         // 改变透明度以及颜色
     $("#droppable").css("opacity",0.4);
-    $("#droppable1").css("opacity",0.5);
     $(".drag").css("opacity",0.4);
     $(".drag").css({ color: "#F0378D", background: "green" });
-    $("#droppable").css({ color: "#F0378D", background: "blue" });
-    $("#droppable1").css({ color: "#F0378D", background: "blue" });
     
 	$("#subbutton").click(function(){  
 		 MakeForm();
@@ -246,6 +255,37 @@ $(document).ready(function(){
 
 <body>
 <div id="content">
+<div id="1" class="ui-widget-content drag "  style=" border-radius:40px">
+  <p>旅游</p>
+  </div>
+  <div id="2" class="ui-widget-content drag "  style=" border-radius:40px">
+  <p>电影</p>
+  </div>
+  <div id="3" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>美食</p>
+  </div>
+  <div id="4" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>电影</p>
+  </div>
+  <div id="5" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>运动</p>
 </div>
+  <div id="6" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>购物狂</p>
+  </div>
+  <div id="7" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>手机控</p>
+  </div>
+  <div id="8" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>动漫</p>
+  </div>
+  <div id="9" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>K歌</p>
+  </div>
+  <div id="10" class="ui-widget-content drag"  style=" border-radius:40px">
+  <p>摄影</p>
+</div>
+</div>
+<div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>
 </html>
