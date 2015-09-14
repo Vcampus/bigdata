@@ -43,11 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <label for="password">密码：</label>
     <input type="text" name="password" id="password">
     <input type="submit" value="登录"/>
+    </div>
   	</form>
 	</div>
 	
-	<div data-role="footer" data-position="fixed" data-fullscreen="true" id="toMyMark">
-    <h1>我的位置</h1>
+	<div data-role="footer" data-position="fixed"  id="toMyMark">
+    <h1>我</h1>
   	</div>
 </div> 
    

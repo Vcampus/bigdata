@@ -218,7 +218,7 @@ $("#10").animate({left:' 395px', top:' -221px'});
 		 MakeForm();
     });
     });
- /*   function MakeForm()  
+    function MakeForm()  
 {  
   
     // 创建一个 form  
@@ -249,7 +249,7 @@ $("#10").animate({left:' 395px', top:' -221px'});
     // 删除该 form  
     document.body.removeChild(form1);  
 }  
-*/
+
 
  </script>
 
