@@ -97,7 +97,6 @@ public class UserController {
 	public ModelAndView showInterest(@RequestParam Integer userid)
 	{
 		
-		
 		User user = userService.findUserByID(userid);
 		
 		ModelAndView mv = new ModelAndView();

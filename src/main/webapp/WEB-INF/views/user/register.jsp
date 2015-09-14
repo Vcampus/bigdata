@@ -19,14 +19,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<link rel="stylesheet" href="static/css/jquery.mobile.flatui.min.css">
+  	<link rel="stylesheet" href="static/mapcss/homepage_map.css">
+  	<script src="static/js/jquery.js"></script>
+  	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>  
   </head>
   
   <body>
-    <form action="/bigdata/user/register" method="post">
-	用户名：<input type="text" name="name"/><br/>
-	密码:<input type="password" name="password"/><br/>
-	确认密码:<input type="password" name="confirm"/><br/>
-	<input type="submit" value="注册"/>
-</form>
+  <div data-role="page" id="registerpage">
+  
+  	<div data-role="header" data-position="fixed" >
+    <h1>很高兴遇见你</h1>
+    <a href="/bigdata/index/login" title="登录" data-icon="search" data-iconpos="right" data-transition="slide" >登录</a>
+  	</div>
+	
+	<div data-role="content">
+  	<form method="post" action="/bigdata/user/register">
+    <div data-role="fieldcontain">
+    <label for="name">账户：</label>
+    <input type="text" name="name" id="name">
+
+    <label for="password">密码：</label>
+    <input type="text" name="password" id="password">
+    
+    <label for="password">确认密码：</label>
+    <input type="text" name="confirm" id="confirm_password">
+    <input type="submit" value="注册"/>
+    </div>
+  	</form>
+	</div>
+	
+	<div data-role="footer" data-position="fixed"  id="toMyMark">
+    <h1>我</h1>
+  	</div>
+</div> 
   </body>
 </html>
