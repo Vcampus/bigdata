@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -15,6 +16,7 @@ import cn.edu.seu.bigdata.bean.User;
 import cn.edu.seu.bigdata.exception.LoginException;
 import cn.edu.seu.bigdata.exception.RegisterException;
 import cn.edu.seu.bigdata.service.UserManageService;
+
 
 
 
@@ -56,26 +58,31 @@ public class UserController {
 	}
 
 	@RequestMapping("/register")
-	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm) {
+	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm,ModelMap model) {
 		
 			try {
 			userService.register(name, password, confirm);
 		} catch (RegisterException e) {
-			e.printStackTrace();
+			if (e.getMessage().equals("PASSWORD_TOO_EASY")){
+				
+				return "redirect:/index/register";
+			}
+			
 		}
 		return "redirect:/index/login";
 	}
 
 	@RequestMapping("/login")
 	public String loginByAccount(@RequestParam String name, @RequestParam String password){
-		   
+		   User user = null;
 			try{
-				userService.loginByAccoutAndPassword(name,password);
+			 user =	userService.loginByAccoutAndPassword(name,password);
 			} catch(LoginException e){
 				e.printStackTrace();
 			}
 		   
-			return  "redirect:/user/interest/?userid="+"1";
+			
+			return  "redirect:/user/interest/?userid="+user.getId();
 	}
 	
 	@RequestMapping("/nice")
@@ -91,9 +98,8 @@ public class UserController {
 	{
 		
 		
-//		User user = userService.findUserByID(id);
+		User user = userService.findUserByID(userid);
 		
-		User user=null;
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
 		mv.setViewName("/user/interest");

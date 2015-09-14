@@ -10,12 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <title></title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="jqueryui/style.css">
-  
+  <script src="/bigdata/static/jquery.ui.touch-punch.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+ </head>
   <style>
   p 
   {
@@ -25,73 +27,151 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   {
   font-size:45px;
   }
-  #draggable ,#draggable1
+  .drag
   {
     width: 50px; 
     height: 50px;
     padding: 0.5em; 
 	text-align: center;
+	position:relative ;
+	margin-left:4em;
+	
    }
   #droppable 
   {
     width: 150px;
     height: 150px;
+    left:197px;
+	top:-198px;
+   
     padding: 0.5em;
-    margin: 10px;
     text-align: center;
+    position:relative
   }
+  #aaa img{border-radius:90px}
+  #content
+  {width:500px;
+  height:500px;
+  }
+
   </style>
 <script>
 
 $(document).ready(function(){
- 
-    $("#draggable").animate({
-      left:'-10px',
-      opacity:'0.2',
-      bottom:'10px',
-      speed :'slow',
-      easing:'swing'
-	});
-	$("#draggable1").animate({
-      left:'50px',
-      opacity:'0.2',
-      bottom:'10px',
-      speed :'slow',
-      easing:'swing'
-	});
+   var i=1;
+   var eve=["旅游","电影","美食","运动","购物狂","动漫","手机控","户外","K歌","摄影"];
+   for (i;i<=5;i++)
+   {
+   var aa=document.createElement('div');
+   var bb=document.createElement('p');
+   bb.innerHTML=eve[i-1];
+	aa.setAttribute("id",i);
+	aa.appendChild(bb);
+	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("style", "border-radius:40px");
+	var cc = document.getElementById("content");
+	cc.appendChild(aa);
+		if (i == 1){
+	$("#1").animate({speed :'slow',easing:'swing',left: '312px',top: '240px',bottom: '10px'});
+	}
+		if (i == 2){
+	$("#2").animate({speed :'slow',easing:'swing',left: '209px', top: '80px',bottom: '10px'});
+	}
+		if (i == 3){
+	  $("#3").animate({speed :'slow',easing:'swing',left: '129px', top: '119px',bottom: '10px'});
+	}
+		if (i == 4){
+  $("#4").animate({speed :'slow',easing:'swing',left: '-35px', top: '57px',bottom: '10px'});
+	}
+		if (i == 5){
+ $("#5").animate({speed :'slow',easing:'swing',left: '18px', top: '292px',bottom: '10px'});
+	}
 	
+
+   }
+   
+   var hh=document.createElement('div');
+   hh.setAttribute("id","droppable");
+   hh.setAttribute("class","ui-widget-header  ui-droppable");
+   hh.setAttribute("style","border-radius: 90px; opacity: 0.4; color: rgb(240, 55, 141); background: blue; left :207px; top :-356px");
+   var ii=document.createElement('div');
+   ii.setAttribute("id","aaa");
+   var jj=document.createElement('img');
+   jj.setAttribute("src","/bigdata/static/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg");
+   jj.setAttribute("width","150");
+   jj.setAttribute("height","150");
+    ii.appendChild(jj);
+   hh.appendChild(ii);
+  
+   cc.appendChild(hh);
+   for (i=6;i<=10;i++)
+   {
+      var aa=document.createElement('div');
+   var bb=document.createElement('p');
+   bb.innerHTML=eve[i-1];
+	aa.setAttribute("id",i);
+	aa.appendChild(bb);
+	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("style", "border-radius:40px");
+	cc = document.getElementById("content");
+    cc.appendChild(aa);
+		if (i == 6){
+  $("#6").animate({speed :'slow',easing:'swing',left: '54px', top: '-118px',bottom: '10px'});
+	}
+		if (i == 7){
+  $("#7").animate({speed :'slow',easing:'swing',left: '464px', top: '-344px',bottom: '10px'});
+	}
+		if (i == 8){
+  $("#8").animate({speed :'slow',easing:'swing',left: '203px', top: '-135px',bottom: '10px'});
+	}
+		if (i == 9){
+  $("#9").animate({speed :'slow',easing:'swing',left: '353px', top: '-324px',bottom: '10px'});
+	}
+			if (i == 10){
+  $("#10").animate({speed :'slow',easing:'swing',left: '395px', top: '-221px',bottom: '10px'});
+	}
+	
+   }
+
+ 
+
+	var dd= document.createElement('div');
+	dd.setAttribute("data-corners", "true");
+	dd.setAttribute("data-shadow", "true");
+	dd.setAttribute("data-iconshadow", "true" );
+	dd.setAttribute("data-wrapperels", "span");
+	dd.setAttribute("data-theme", "c");
+	dd.setAttribute("data-disabled", "false");
+	dd.setAttribute("class", "ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all");
+	dd.setAttribute("aria-disabled", "false");
+	var ee=document.createElement('span');
+	ee.setAttribute("class","ui-btn-inner");
+	var ff=document.createElement('span');
+	ff.setAttribute("class","ui-btn-text");
+	ff.innerHTML="OK!";
+	ee.appendChild(ff);
+	dd.appendChild(ee);
+
+	var gg=document.createElement('input');
+	gg.setAttribute("type","button");
+	gg.setAttribute("class","ui-btn-hidden");
+	dd.appendChild(gg);
+		cc.appendChild(dd);
+		
+		$(".drag").fadeIn("slow");
+
+
+ 
 });
 
-
-
   $(function() {
-   var	counts =new Array (0,0,0);
-    $( "#draggable" ).draggable({
+  
+   var	counts =new Array (0,0,0,0,0,0,0,0,0,0);
+    $( ".drag" ).draggable({
         revert: "valid",
         stop: function() {
-            counts[0]++;
-			if (counts[0] % 2 ==1)
-				{
-				$(this)
-				.addClass( "ui-state-highlight" );
-				$(this)
-				.css({ color: "#F0378D", background: "blue" });
-				}
-			else
-				{
-				$(this)
-				.removeClass( "ui-state-highlight" );
-				$(this)
-				.css({ color: "#F0378D", background: "green" });
-				}
-    	}
-    });
-
-	$( "#draggable1" ).draggable({
-        revert: "valid",
-        stop: function() {
-        	counts[1]++;
-            if (counts[1] % 2 ==1)
+       var k=$(this).attr('id');
+			if (counts[k-1] % 2 ==1)
 				{
 				$(this)
 				.addClass( "ui-state-highlight" );
@@ -112,21 +192,24 @@ $(document).ready(function(){
       activeClass: "ui-state-default ",
       hoverClass: "ui-state-hover",
       drop: function( event, ui ) {
+      var k=ui.draggable.attr('id');
+      counts[k-1]++;
       }
     });
 
         // 改变透明度以及颜色
     $("#droppable").css("opacity",0.4);
+    $("#droppable1").css("opacity",0.5);
     $(".drag").css("opacity",0.4);
     $(".drag").css({ color: "#F0378D", background: "green" });
     $("#droppable").css({ color: "#F0378D", background: "blue" });
-    var cmd=[{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"1"}, {"goodsId":"2"}, {"goodsId":"3"}]},{"storeId":"0a1", "address":"西斗门路2号", "goods":[{"goodsId":"4"}, {"goodsId":"4"}, {"goodsId":"5"}]}]  
+    $("#droppable1").css({ color: "#F0378D", background: "blue" });
     
 	$("#subbutton").click(function(){  
 		 MakeForm();
     });
     });
-    function MakeForm()  
+ /*   function MakeForm()  
 {  
   
     // 创建一个 form  
@@ -157,19 +240,12 @@ $(document).ready(function(){
     // 删除该 form  
     document.body.removeChild(form1);  
 }  
- </script>
-</head>
-<body>
+*/
 
-<div id="draggable" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>读书</p>
+ </script>
+
+<body>
+<div id="content">
 </div>
-<div id="droppable" class="ui-widget-header " style=" border-radius:90px">
-  <h1>用户</h1>
-</div>
-<div id="draggable1" class="ui-widget-content drag"  style=" border-radius:40px">
-  <p>电影</p>
-</div>
-<div><input type="button" id="subbutton" value="OK!" /></div> 
 </body>
 </html>
