@@ -18,6 +18,8 @@
 
 package cn.edu.seu.bigdata.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +33,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.seu.bigdata.service.ActService;
 import cn.edu.seu.bigdata.service.LocationService;
 import cn.edu.seu.bigdata.service.UserManageService;
 import cn.edu.seu.bigdata.bean.Location;
+import cn.edu.seu.bigdata.bean.User;
 
 
 
@@ -54,29 +58,67 @@ import cn.edu.seu.bigdata.bean.Location;
 public class LocationController {
     
     private LocationService locationService;
+	private ActService actService;
 
     @Autowired
     public void setUserService(LocationService locationService) {
         this.locationService =locationService;
     }
+    @Autowired
+    public void setActService(ActService actService) {
+        this.actService =actService;
+    }
     
-    
-
-    
-    
+     
     @RequestMapping(path="/loc",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Location create(@RequestBody Location location){
-
-        System.out.println(location.getLat());
-       
-        double lat = location.getLat();
-        double lng = location.getLng();
-        String poi = location.getPoi();
-        String address = location.getAddress();
-        locationService.saveLocationBaiDu(lat, lng, poi, address);
-        return location;
+    public List<Location> create(@RequestBody String location){
+    	
+    	double lat;
+    	double lng;
+    	int userid;
+    	String poi;
+    	String address;
+    	String loca="[";
+    	
+    	
+    	String [] loco = location.split(",");
+    	String [] spl=loco[0].split(":");
+    	lat = Double.valueOf(spl[1]);
+    	spl = loco[1].split(":");
+    	lng = Double.valueOf(spl[1]);
+    	spl = loco[2].split(":");
+   
+    	userid = Integer.valueOf(spl[1].substring(1, spl[1].length()-1));
+    	spl = loco[3].split(":");
+    	poi = spl[1].substring(1, spl[1].length()-1);
+    	spl = loco[4].split(":");
+    	address = spl[1].substring(1, spl[1].length()-2);
+    		
+    	Location locations = locationService.qryLocationByAddress(address);
+    	if (locations == null){
+    		locations = locationService.saveLocationBaiDu(lat, lng, poi, address);
+    	}
+    	
+    	actService.saveAct(userid, locations.getId());   
+    	
+    	List<Location> locate = locationService.getNearbyLocation(lat, lng,1000);
+    	
+    	for (int i=0;i<locate.size()-1;i++)
+    	{
+    		loca = loca + "{"+"\"lat\":\""+locate.get(i).getLat()+"\",";
+    		loca = loca + "\"lng\":\""+locate.get(i).getLng()+"\""+"},";
+    		List<User> user = locationService.getNearbyUser(locate.get(i).getId());
+    		
+    	}
+    	loca = loca + "{"+"\"lat\":\""+locate.get(locate.size()-1).getLat()+"\",";
+		loca = loca + "\"lng\":\""+locate.get(locate.size()-1).getLng()+"\""+"}";
+    	
+    	loca = loca + "]";
+    	return locate;
+    	
     }
+
     
 
 }

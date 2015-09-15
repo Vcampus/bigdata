@@ -34,7 +34,6 @@ function showInfo(e){
             }
         }
 
-
         //组织要发送的数据
         var location = {
                         lat: e.point.lat,
@@ -44,16 +43,20 @@ function showInfo(e){
                         address: allPois[tag].address,
                     }
 
+
         console.log(allPois[tag].title);
 
         // 发送数据
         $.ajax({
             url: '/bigdata/location/loc',
+            contentType: "application/json; charset=utf-8",
             type: 'POST',
             dataType: 'json',
             data: JSON.stringify(location),
         })
-        .done(function() {
+        .done(function(msg) {
+        	
+        	console.log(msg);
             console.log("success");
         })
         .fail(function() {
