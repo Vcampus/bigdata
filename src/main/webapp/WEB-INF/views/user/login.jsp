@@ -35,13 +35,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	</div>
 	
 	<div data-role="content">
-  	<form method="post" action="/bigdata/user/login">
+  	<form method="post" action="/bigdata/user/login" data-ajax="false">
     <div data-role="fieldcontain">
     <label for="name">账户：</label>
     <input type="text" name="name" id="name">
 
     <label for="password">密码：</label>
-    <input type="text" name="password" id="password">
+    <input type="password" name="password" id="password">
     <input type="submit" value="登录"/>
   	</form>
 	</div>

@@ -15,7 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import cn.edu.seu.bigdata.bean.User;
 import cn.edu.seu.bigdata.exception.LoginException;
 import cn.edu.seu.bigdata.exception.RegisterException;
+import cn.edu.seu.bigdata.exception.UpdateUserException;
 import cn.edu.seu.bigdata.service.UserManageService;
+
 
 
 
@@ -52,10 +54,7 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String register() {
-		return "user/register";
-	}
+
 
 	@RequestMapping("/register")
 	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm,ModelMap model) {
@@ -86,8 +85,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/nice")
-	public ModelAndView showMain(){
-		User user = null;
+	public ModelAndView showMain(@RequestParam String tag,@RequestParam Integer userid){
+		User user =userService.findUserByID(userid);
+		try {
+			userService.updateUserInfo(user.getId(), user.getAge(), user.getSex(),tag, user.getNickname());
+		} catch (UpdateUserException e) {
+			
+			e.printStackTrace();
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
 		mv.setViewName("/user/nice");
@@ -95,11 +100,8 @@ public class UserController {
 	}
 	@RequestMapping("/interest")
 	public ModelAndView showInterest(@RequestParam Integer userid)
-	{
-		
-		
+	{		
 		User user = userService.findUserByID(userid);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
 		mv.setViewName("/user/interest");
