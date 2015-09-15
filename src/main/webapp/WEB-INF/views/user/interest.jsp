@@ -227,7 +227,10 @@ $("#10").animate({left:' 395px', top:' -221px'});
     
 	$("#subbutton").click(function(){  
     // 创建一个 form  
-    
+    for (var i=1;i<=10;i++)
+    {
+    	counts[i]=counts[i]%2;
+    }
     var count=counts.join(",")
     var form1 = document.createElement("form");  
     form1.id = "form1";  

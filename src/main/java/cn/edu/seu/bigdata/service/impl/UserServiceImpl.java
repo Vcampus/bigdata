@@ -80,8 +80,6 @@ public class UserServiceImpl implements UserManageService{
 	}
 
 	public void updateUserInfo(int id, int age, String sex,String tags ,String nickname) throws UpdateUserException {
-		
-		String tag="";
 		User user = userManageDAO.getByHQL("from User u where u.id=?", id);
 		if (user==null){
 			throw new UpdateUserException(UpdateUserException.USER_NOT_EXIST);
@@ -100,8 +98,8 @@ public class UserServiceImpl implements UserManageService{
 			}
 
 			user.setTag(tags);
-			
 			userManageDAO.update(user);
+			
 			if (!location.isEmpty()){
 				for (Location loc : location){
 					computeTag(id,loc.getId(),true);
