@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta charset="utf-8">
   	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<title>一个页面</title>
-	<link rel="stylesheet" href="static/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="static/css/jquery.mobile.flatui.min.css">
   	<link rel="stylesheet" href="static/mapcss/homepage_map.css">
   	<script src="static/js/jquery.js"></script>
   	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>   
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
     <div data-role="content">
-      <h1>sss</h1>
+      <h1></h1>
     </div>
 
     <div data-role="footer" data-position="fixed" >

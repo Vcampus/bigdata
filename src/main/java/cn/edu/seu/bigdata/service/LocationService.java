@@ -11,7 +11,8 @@ public interface LocationService {
 	
 	public Location qryLocationByLatAndLng(double lat,double lng);
 	public Location saveLocation(double lat,double lng,String tag,String poi,String address);
-	//lat 纬度，lng 经度 precision 以米为单位的半径圈 
+	//lat 纬度，lng 经度 precision 以米为单位的半径圈
+	public Location saveLocationBaiDu(double lat,double lng,String poi,String address);
 	public List<Location> getNearbyLocation(double lat,double lng,int precision);
 	public List<User> getNearbyUser(int lid);
 	

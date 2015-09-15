@@ -100,7 +100,7 @@ public class UserController {
 	}
 	@RequestMapping("/interest")
 	public ModelAndView showInterest(@RequestParam Integer userid)
-	{		
+	{
 		User user = userService.findUserByID(userid);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);

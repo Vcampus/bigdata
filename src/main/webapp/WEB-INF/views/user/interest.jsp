@@ -226,6 +226,7 @@ $("#10").animate({left:' 395px', top:' -221px'});
     
     
 	$("#subbutton").click(function(){  
+
     // 创建一个 form  
     for (var i=1;i<=10;i++)
     {
@@ -264,7 +265,9 @@ $("#10").animate({left:' 395px', top:' -221px'});
     form1.submit();  
     // 删除该 form  
     document.body.removeChild(form1);  
+
 });
+
 
     
 

@@ -19,8 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" href="static/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="static/css/jquery.mobile.flatui.css">
   	<link rel="stylesheet" href="static/mapcss/homepage_map.css">
+  	<link rel="stylesheet" href="static/mapcss/ntmui.css">
   	<script src="static/js/jquery.js"></script>
   	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>   
 
@@ -30,24 +31,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div data-role="page" id="loginpage">
   
   	<div data-role="header" data-position="fixed" >
-    <h1>很高兴遇见你</h1>
-    <a href="/bigdata/user/register" title="注册新用户" data-icon="search" data-iconpos="right" data-transition="slide">注册</a>
+    <h1>登录</h1>
+    <a href="/bigdata/index/register" title="注册新用户" data-icon="search" data-iconpos="right" data-transition="slide" data-direction="reverse">注册</a>
   	</div>
 	
-	<div data-role="content">
+
+	<div data-role="content" id="content-page-login">
+	<h1 align="center">Nice to meet u!</h1>
   	<form method="post" action="/bigdata/user/login" data-ajax="false">
     <div data-role="fieldcontain">
-    <label for="name">账户：</label>
-    <input type="text" name="name" id="name">
+    <br>
+    <input type="text" name="name" id="name"  placeholder="账号">
 
-    <label for="password">密码：</label>
-    <input type="password" name="password" id="password">
-    <input type="submit" value="登录"/>
+    <br>
+    <input type="password" name="password" id="password"  placeholder="密码">
+    <br>
+    <button type="submit" class="ui-btn ui-btn-f ui-icon-flat-menu ui-btn-icon-left ui-shadow ui-corner-all" >登录</button>
+ 	</div>
   	</form>
 	</div>
 	
-	<div data-role="footer" data-position="fixed" data-fullscreen="true" id="toMyMark">
-    <h1>我的位置</h1>
+	<div data-role="footer" data-position="fixed"  id="toMyMark">
+    <h1>hi</h1>
   	</div>
 </div> 
    
