@@ -29,28 +29,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div data-role="page" id="registerpage">
   
   	<div data-role="header" data-position="fixed" >
-    <h1>很高兴遇见你</h1>
+    <h1>注册新用户</h1>
     <a href="/bigdata/index/login" title="登录" data-icon="search" data-iconpos="right" data-transition="slide" >登录</a>
   	</div>
 	
 	<div data-role="content">
-  	<form method="post" action="/bigdata/user/register">
-    <div data-role="fieldcontain">
-    <label for="name">账户：</label>
-    <input type="text" name="name" id="name">
+	
+		<h1 align="center">Sign in now!</h1>
 
-    <label for="password">密码：</label>
-    <input type="text" name="password" id="password">
+		<form method="post" action="/bigdata/user/register">
+    	<div data-role="fieldcontain">
+    	<br>
+    	<input type="text" name="name" id="name" placeholder="账号">
+
+    	<br>
+    	<input type="text" name="password" id="password" placeholder="密码">
     
-    <label for="password">确认密码：</label>
-    <input type="text" name="confirm" id="confirm_password">
-    <input type="submit" value="注册"/>
-    </div>
-  	</form>
+    	<br>
+    	<input type="text" name="confirm" id="confirm_password " placeholder="确认密码">
+    	<br>
+    	<button type="submit" class="ui-btn ui-btn-b ui-icon-flat-menu ui-btn-icon-left ui-shadow ui-corner-all" >注册</button>
+		
+   		</div>
+  		</form>
 	</div>
+
+  	
 	
 	<div data-role="footer" data-position="fixed"  id="toMyMark">
-    <h1>我</h1>
+    <h1>Hi</h1>
   	</div>
 </div> 
   </body>

@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <div data-role="content">
   <div id="map-home" style="height: 600px "></div>
-  <script type="text/javascript" src="mapjs/homepage_map.js"></script>
+  <script type="text/javascript" src="static/mapjs/homepage_map.js"></script>
   </div>
 
   <div data-role="footer" data-position="fixed" data-fullscreen="true" id="toMyMark">
