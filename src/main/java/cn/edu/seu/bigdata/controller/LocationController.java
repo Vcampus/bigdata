@@ -74,13 +74,9 @@ public class LocationController {
         double lat = location.getLat();
         double lng = location.getLng();
         String poi = location.getPoi();
-        Location locations = locationService.qryLocationByLatAndLng(lat, lng);
-        int lid = locations.getId();
-        if (location == null)
-        locationService.getNearbyLocation(lat, lng, 500);
-        actService.saveAct(uid, lid);
 
-       
+
+
         String address = location.getAddress();
         locationService.saveLocationBaiDu(lat, lng, poi, address);
         return location;

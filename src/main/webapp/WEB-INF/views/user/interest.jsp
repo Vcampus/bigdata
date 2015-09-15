@@ -311,6 +311,6 @@ $("#10").animate({left:' 395px', top:' -221px'});
 
 </div>
 <div><input type="button" id="subbutton" value="OK!" /></div> 
-    <input id="tag" type="hidden" value="${user.tag}">  
+    <input id="tag" type="hidden" value="${user.tag}"> 
 </body>
 </html>

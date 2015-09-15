@@ -92,5 +92,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
         
 </div>
+<input id="userid" type="hidden" value="${user.id}">
+<script type="text/javascript">
+  console.log("${user.id}");
+</script>
   </body>
 </html>
