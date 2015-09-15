@@ -29,7 +29,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<script src="http://api.map.baidu.com/api?v=1.5&ak=ZvGx486DtaVtWrydYG5uOAPA"></script>  
 
   </head>
-  
   <body>
  	
  	<div data-role="page" id="homepage">
@@ -89,6 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      </ul>
     </div>
     </div>
+        <input id="user" type="hidden" value="${user.tag}"> 
+       
+        
 </div>
   </body>
 </html>

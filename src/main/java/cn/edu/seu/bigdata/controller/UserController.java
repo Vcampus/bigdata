@@ -57,15 +57,26 @@ public class UserController {
 
 
 	@RequestMapping("/register")
-	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm,ModelMap model) {
+	public String create(@RequestParam String name, @RequestParam String password, @RequestParam String confirm,Map<String,Object> map) {
 		
 			try {
 			userService.register(name, password, confirm);
 		} catch (RegisterException e) {
 			if (e.getMessage().equals("PASSWORD_TOO_EASY")){
-				
+				map.put("message", "密码至少要六位！");
 				return "redirect:/index/register";
 			}
+			
+			if (e.getMessage().equals("CONFIRM_ERROR")){
+				map.put("message", "密码与确认密码不一致!");
+				return "redirect:/index/register";
+			}
+			
+			if (e.getMessage().equals("ACCOUNT_ALREADY_EXISIT")){
+				map.put("message", "用户名已存在！");
+				return "redirect:/index/register";
+			}
+
 			
 		}
 		return "redirect:/index/login";
@@ -98,6 +109,8 @@ public class UserController {
 		mv.setViewName("/user/nice");
 		return mv;
 	}
+	
+	
 	@RequestMapping("/interest")
 	public ModelAndView showInterest(@RequestParam Integer userid)
 	{
@@ -107,6 +120,4 @@ public class UserController {
 		mv.setViewName("/user/interest");
 		return mv;
 	}
-	
-	
 }

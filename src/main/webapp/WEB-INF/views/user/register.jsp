@@ -24,7 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<script src="static/js/jquery.js"></script>
   	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>  
   </head>
-  
+<script>
+$(document).ready(function() {
+alert(${message});
+});
+</script>
   <body>
   <div data-role="page" id="registerpage">
   

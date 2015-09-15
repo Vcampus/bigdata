@@ -1,18 +1,18 @@
 /************************************************************************************ 
- All rights are reserved. Reproduction or transmission in whole or in part， in  <br> 
- any form or by any means， electronic， mechanical or otherwise， is prohibited  <br> 
+ All rights are reserved. Reproduction or transmission in whole or in part锛�in  <br> 
+ any form or by any means锛�electronic锛�mechanical or otherwise锛�is prohibited  <br> 
  without the prior written consent of the copyright owner                        <br> 
  *************************************************************************************/
 
 /**
- * File Name：LocationController.java<br>
- * Copyright：Copyright by ZTEsoft<br>
- * Description：File Description	<br>
- * Author：Administrator<br>
- * Create Date：2015年9月12日<br>
- * Task ID：	<br>
- * Modifier：Administrator<br>
- * Modified Date：2015年9月12日<br>
+ * File Name锛歀ocationController.java<br>
+ * Copyright锛欳opyright by ZTEsoft<br>
+ * Description锛欶ile Description	<br>
+ * Author锛欰dministrator<br>
+ * Create Date锛�015骞�鏈�2鏃�br>
+ * Task ID锛�<br>
+ * Modifier锛欰dministrator<br>
+ * Modified Date锛�015骞�鏈�2鏃�br>
  * Modified Content:<br>
  */
 
@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.seu.bigdata.service.ActService;
 import cn.edu.seu.bigdata.service.LocationService;
 import cn.edu.seu.bigdata.service.UserManageService;
 import cn.edu.seu.bigdata.bean.Location;
@@ -43,7 +44,7 @@ import cn.edu.seu.bigdata.bean.Location;
  *  
  * @author Administrator <br>
  * @version <br>
- * @CreateDate 2015年9月12日 <br>
+ * @CreateDate 2015骞�鏈�2鏃�<br>
  * @see cn.edu.seu.bigdata.controller <br>
  * @since <br>
  */
@@ -54,30 +55,37 @@ import cn.edu.seu.bigdata.bean.Location;
 public class LocationController {
     
     private LocationService locationService;
+	private ActService actService;
 
     @Autowired
     public void setUserService(LocationService locationService) {
         this.locationService =locationService;
     }
+    @Autowired
+    public void setActService(ActService actService) {
+        this.actService =actService;
+    }
     
-    
-
-    
-    
+     
     @RequestMapping(path="/loc",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Location create(@RequestBody Location location){
-
-        System.out.println(location.getLat());
-       
+    public Location create(@RequestBody Location location){  
+    	int uid = 0 ;
         double lat = location.getLat();
         double lng = location.getLng();
         String poi = location.getPoi();
+        Location locations = locationService.qryLocationByLatAndLng(lat, lng);
+        int lid = locations.getId();
+        if (location == null)
+        locationService.getNearbyLocation(lat, lng, 500);
+        actService.saveAct(uid, lid);
+
        
         String address = location.getAddress();
         locationService.saveLocationBaiDu(lat, lng, poi, address);
         return location;
     }
+
     
 
 }

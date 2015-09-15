@@ -230,7 +230,7 @@ $("#10").animate({left:' 395px', top:' -221px'});
     // 创建一个 form  
     for (var i=1;i<=10;i++)
     {
-    	counts[i]=counts[i]%2;
+    	counts[i-1]=counts[i-1]%2;
     }
     var count=counts.join(",")
     var form1 = document.createElement("form");  
