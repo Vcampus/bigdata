@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <div data-role="page" id="loginpage">
+  <div data-role="page" id="loginpage" style="background-image:url('static/image/background.jpg');">
   
   	<div data-role="header" data-position="fixed" >
     <h1>登录</h1>
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 
 	<div data-role="content" id="content-page-login">
-	<h1 align="center">Nice to meet u!</h1>
+	<h1 align="center" style="color: #FFFFFF">Nice to meet u!</h1>
   	<form method="post" action="/bigdata/user/login" data-ajax="false">
     <div data-role="fieldcontain">
     <br>

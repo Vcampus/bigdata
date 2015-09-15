@@ -10,7 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<!--   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"> -->
+  <link rel="stylesheet" href="../static/css/jquery.mobile.flatui.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -31,13 +32,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   .drag
   {
-    width: 50px; 
-    height: 50px;
-    padding: 0.5em; 
+  width: 50px; 
+  height: 50px;
+  padding: 0.5em; 
 	text-align: center;
 	position:fixed ;
 	top: 50px;
 	left:50px;
+  border-radius: 40px;
+
    }
 
 #droppable
@@ -73,7 +76,7 @@ var cc = document.getElementById("content");
    bb.innerHTML=eve[i-1];
 	aa.setAttribute("id",i);
 	aa.appendChild(bb);
-	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("class", " drag");
 	aa.setAttribute("style", "border-radius:40px");
 	var cc = document.getElementById("content");
 	cc.appendChild(aa);
@@ -106,7 +109,7 @@ var cc = document.getElementById("content");
    jj.setAttribute("src","/bigdata/static/image/833f9f634bcbf07bb8ca16fd14cd18c6.jpeg");
    jj.setAttribute("width","150");
    jj.setAttribute("height","150");
-    ii.appendChild(jj);
+  ii.appendChild(jj);
    hh.appendChild(ii);
   
    cc.appendChild(hh);
@@ -117,7 +120,7 @@ var cc = document.getElementById("content");
    bb.innerHTML=eve[i-1];
 	aa.setAttribute("id",i);
 	aa.appendChild(bb);
-	aa.setAttribute("class", "ui-widget-content drag");
+	aa.setAttribute("class", " drag");
 	aa.setAttribute("style", "border-radius:40px");
 	cc = document.getElementById("content");
     cc.appendChild(aa);
@@ -183,11 +186,11 @@ $("#10").animate({left:' 395px', top:' -221px'});
    		var oc= document.getElementById(i);
    		if (counts[i-1]%2==1)
    		{	
-   		$(oc).css({ color: "#F0378D", background: "blue" });
+   		$(oc).css({ color: "#FFFFFF", background: "blue" });
    		}
    		if (counts[i-1]%2==0)
    		{
-	   	$(oc).css({ color: "#F0378D", background: "green" });
+	   	$(oc).css({ color: "#FFFFFF", background: "green" });
    		}
    }
     $( ".drag" ).draggable({
@@ -199,14 +202,14 @@ $("#10").animate({left:' 395px', top:' -221px'});
 				$(this)
 				.addClass( "ui-state-highlight" );
 				$(this)
-				.css({ color: "#F0378D", background: "blue" });
+				.css({ color: "#FFFFFF", background: "blue" });
 				}
 			else
 				{
 				$(this)
 				.removeClass( "ui-state-highlight" );
 				$(this)
-				.css({ color: "#F0378D", background: "green" });
+				.css({ color: "#FFFFFF", background: "green" });
 				}
     	}
     });
@@ -220,7 +223,7 @@ $("#10").animate({left:' 395px', top:' -221px'});
       }
     });
 
-        // 改变透明度以及颜色
+    // 改变透明度以及颜色
     $("#droppable").css("opacity",0.4);
     $(".drag").css("opacity",0.4);  
     
@@ -265,7 +268,6 @@ $("#10").animate({left:' 395px', top:' -221px'});
     form1.submit();  
     // 删除该 form  
     document.body.removeChild(form1);  
-
 });
 
 
@@ -277,34 +279,34 @@ $("#10").animate({left:' 395px', top:' -221px'});
 
 <body>
 <div id="content">
-<div id="1" class="ui-widget-content drag "  style=" border-radius:40px">
+<div id="1" class=" drag " >
   <p>旅游</p>
   </div>
-    <div id="2" class="ui-widget-content drag "  style=" border-radius:40px">
+    <div id="2" class=" drag " >
   <p>电影</p>
   </div>
-  <div id="3" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="3" class=" drag" >
   <p>美食</p>
   </div>
-  <div id="4" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="4" class=" drag" >
   <p>电影</p>
   </div>
-  <div id="5" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="5" class=" drag" >
   <p>运动</p>
 </div>
-  <div id="6" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="6" class=" drag" >
   <p>购物狂</p>
   </div>
-  <div id="7" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="7" class=" drag" >
   <p>手机控</p>
   </div>
-  <div id="8" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="8" class=" drag" >
   <p>动漫</p>
   </div>
-  <div id="9" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="9" class=" drag" >
   <p>K歌</p>
   </div>
-  <div id="10" class="ui-widget-content drag"  style=" border-radius:40px">
+  <div id="10" class=" drag" >
   <p>摄影</p>
 </div>
 

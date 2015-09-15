@@ -28,14 +28,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <div data-role="page" id="registerpage">
   
-  	<div data-role="header" data-position="fixed" >
+  	<div data-role="header" data-position="fixed" style="background-image:url('static/image/background.jpg');">
     <h1>注册新用户</h1>
     <a href="/bigdata/index/login" title="登录" data-icon="search" data-iconpos="right" data-transition="slide" >登录</a>
   	</div>
 	
 	<div data-role="content">
 	
-		<h1 align="center">Sign in now!</h1>
+		<h1 align="center" style="color: #FFFFFF">Sign in now!</h1>
 
 		<form method="post" action="/bigdata/user/register">
     	<div data-role="fieldcontain">
