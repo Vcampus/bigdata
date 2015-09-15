@@ -108,4 +108,25 @@ public class LocationServiceImpl implements LocationService{
 		}
 		
 	}	
+	
+	public Location saveLocationBaiDu(double lat, double lng,  String poi,
+            String address) {
+        Location location = locationDAO.getByHQL("from Location l where l.poi=?",poi);
+        if (location!=null){
+            return location;
+        }
+        else{
+             location= new Location();
+            location.setLat(lat);
+            location.setLng(lng);
+            location.setAddress(address);
+            location.setPoi(poi);
+            location.setTag("0,0,0,0,0,0,0,0,0,0,");
+
+            locationDAO.save(location); 
+            return location;
+            
+        }
+        
+    }  
 }
