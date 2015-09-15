@@ -58,7 +58,8 @@ public class LocationServiceImpl implements LocationService{
 	
 	public List<Location> getNearbyLocation(double lat, double lng, int precision) {
 		// TODO Auto-generated method stub
-		List<Location> location = locationDAO.getListByHQL("from Location l where l.lat<=? and l.lat>=? and l.lng<=? and l.lng>=?", lat+precision*0.000001,lat-precision*0.000001,lng-precision*0.000001,lng+precision*0.000001);
+		
+		List<Location> location = locationDAO.getListByHQL("from Location l where l.lat<=? and l.lat>=? and l.lng<=? and l.lng>=?", lat+precision*0.00001,lat-precision*0.00001,lng+precision*0.00001,lng-precision*0.00001);
 		return location;
 			
 	}
@@ -128,5 +129,11 @@ public class LocationServiceImpl implements LocationService{
             
         }
         
-    }  
+    }
+
+	public Location qryLocationByAddress(String address) {
+		// TODO Auto-generated method stub
+		Location location = locationDAO.getByHQL("from Location l where l.address=?",address);
+		return location;
+	}  
 }
