@@ -131,9 +131,9 @@ public class LocationServiceImpl implements LocationService{
         
     }
 
-	public Location qryLocationByAddress(String address) {
+	public Location qryLocationByAddress(String address ,String poi) {
 		// TODO Auto-generated method stub
-		Location location = locationDAO.getByHQL("from Location l where l.address=?",address);
+		Location location = locationDAO.getByHQL("from Location l where l.address=? and l.poi=? ",address,poi);
 		return location;
 	}  
 }
