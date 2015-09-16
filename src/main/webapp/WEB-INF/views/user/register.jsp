@@ -30,9 +30,9 @@ alert(${message});
 });
 </script>
   <body>
-  <div data-role="page" id="registerpage">
+  <div data-role="page" id="registerpage" style="background-image:url('static/image/background.jpg');">
   
-  	<div data-role="header" data-position="fixed" style="background-image:url('static/image/background.jpg');">
+  	<div data-role="header" data-position="fixed">
     <h1>注册新用户</h1>
     <a href="/bigdata/index/login" title="登录" data-icon="search" data-iconpos="right" data-transition="slide" >登录</a>
   	</div>
@@ -47,10 +47,10 @@ alert(${message});
     	<input type="text" name="name" id="name" placeholder="账号">
 
     	<br>
-    	<input type="text" name="password" id="password" placeholder="密码">
+    	<input type="password" name="password" id="password" placeholder="密码">
     
     	<br>
-    	<input type="text" name="confirm" id="confirm_password " placeholder="确认密码">
+    	<input type="password" name="confirm" id="confirm_password " placeholder="确认密码">
     	<br>
     	<button type="submit" class="ui-btn ui-btn-b ui-icon-flat-menu ui-btn-icon-left ui-shadow ui-corner-all" >注册</button>
 		
