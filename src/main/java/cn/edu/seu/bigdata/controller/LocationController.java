@@ -18,7 +18,9 @@
 
 package cn.edu.seu.bigdata.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -59,14 +61,20 @@ public class LocationController {
     
     private LocationService locationService;
 	private ActService actService;
+	private UserManageService userService;
 
     @Autowired
-    public void setUserService(LocationService locationService) {
+    public void setLocationService(LocationService locationService) {
         this.locationService =locationService;
     }
     @Autowired
     public void setActService(ActService actService) {
         this.actService =actService;
+    }
+    
+    @Autowired
+    public void setUserService(UserManageService userService) {
+        this.userService =userService;
     }
     
      
@@ -120,7 +128,26 @@ public class LocationController {
     	return locate;
     	
     }
-    
+
+    @RequestMapping(path="/interest",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map<Integer, List<Location>> showInterest(@RequestBody String userid){
+    //	User user = userService.findUserByID(userid);
+    //	user.getTag();
+    	
+    	List<Location> location = locationService.getNearbyLocation(31.892653, 118.835167, 1000);
+    	List<Location> location1 = locationService.getNearbyLocation(39.881897, 116.454453, 1000);
+    	Map<Integer,List<Location> > mappedLocations = new HashMap<Integer, List<Location>>();
+    	mappedLocations.put(2, location);
+    	mappedLocations.put(3, location1);
+    	
+    	
+       	
+		return mappedLocations;
+    	
+    	
+    	
+    }
     
 
     
