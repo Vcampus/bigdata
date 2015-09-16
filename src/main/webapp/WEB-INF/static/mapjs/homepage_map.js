@@ -3,6 +3,8 @@ var map = new BMap.Map("map-home");
 
 //设置中心点和缩放级别
 map.centerAndZoom("南京",20);
+var tpoint = new BMap.Point(118.803484, 32.065714);
+
 
 
 //定时给服务器发送信息
@@ -56,6 +58,7 @@ function MarkByData() {
     var mk = new BMap.Marker(new_point, {
         icon: myIcon
     });
+    mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
     map.addOverlay(mk); // 将标注添加到地图中
     map.panTo(new_point);
 }
@@ -199,4 +202,18 @@ $(document).ready(function() {
 
 });
 
-
+//centre:椭圆中心点,X:横向经度,Y:纵向纬度
+function add_oval(centre, x, y) {
+    var assemble = new Array();
+    var angle;
+    var dot;
+    var tangent = x / y;
+    for (i = 0; i < 36; i++) {
+        angle = (2 * Math.PI / 36) * i;
+        dot = new BMap.Point(centre.lng + Math.sin(angle) * y * tangent, centre.lat + Math.cos(angle) * y);
+        assemble.push(dot);
+    }
+    return assemble;
+}
+var oval = new BMap.Polygon(add_oval(tpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
+map.addOverlay(oval);
