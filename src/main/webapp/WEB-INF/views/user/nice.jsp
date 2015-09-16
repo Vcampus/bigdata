@@ -39,9 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
  	
  	<div data-role="page" id="homepage" >
-    <div data-role="header" data-position="fixed" data-fullscreen="true">
+    <div data-role="header" data-position="fixed" >
     <a href="#info_page" title="打开设置" data-icon="grid" data-iconpos="left" data-transition="slide" data-direction="reverse">设置</a>
-    <a href="" title="打开菜单" data-icon="grid" data-iconpos="left" id="test_btn" class="ui-btn-right">测试按钮</a>
     <h1>很高兴遇见你</h1>
     <a href="search.html" title="搜索" data-icon="search" data-iconpos="right" data-transition="slide">雷达</a>
   </div>

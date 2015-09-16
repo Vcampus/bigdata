@@ -2,9 +2,56 @@
 var map = new BMap.Map("map-home");
 
 //设置中心点和缩放级别
-var point = new BMap.Point(116.404, 39.915);
-map.centerAndZoom(point, 15);
+map.centerAndZoom("南京",20);
 
+
+//定时给服务器发送信息
+function sendLocation () {
+    console.log('s');
+    setTimeout("sendLocation()",2000);
+}
+
+function MarkByGps() {
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r) {
+        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+            var myIcon = new BMap.Icon("static/image/marker_blue.png", new BMap.Size(300, 157));
+            var mk = new BMap.Marker(r.point, {
+                icon: myIcon
+            });
+            map.addOverlay(mk);
+            alert('您的位置：' + r.point.lng + ',' + r.point.lng);
+            map.centerAndZoom(r.point, 20);
+        } else {
+            alert('failed' + this.getStatus());
+        }
+    });
+}
+function MarkByIP(){
+    var myCity = new BMap.LocalCity();
+    var cityName = myCity.name;
+    map.setCenter(cityName);
+    alert("当前定位城市:"+cityName);
+}
+
+function MarkByName() {
+    map.centerAndZoom("南京", 15);
+    var myIcon = new BMap.Icon("static/image/marker_blue.png", new BMap.Size(300, 157));
+    var mk = new BMap.Marker(r.point, {
+        icon: myIcon
+    });
+    map.addOverlay(mk);
+}
+
+function MarkByData() {
+    var new_point = new BMap.Point(118.825115, 31.889903);
+    var myIcon = new BMap.Icon("static/image/marker_blue.png", new BMap.Size(300, 157));
+    var mk = new BMap.Marker(new_point, {
+        icon: myIcon
+    });
+    map.addOverlay(mk); // 将标注添加到地图中
+    map.panTo(new_point);
+}
 
 //添加地图点击事件
 function showInfo(e){
@@ -68,92 +115,21 @@ function showInfo(e){
         
 
     }, locationOptions);
-
-        // var geoc = new BMap.Geocoder();
-        // geoc.getLocation(e.point, function(rs){
-        //     var addComp = rs.addressComponents;
-        //     alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-        // });        
-
-        // var geolocation = new BMap.Geolocation();
-        // geolocation.getCurrentPosition(function(e) {
-        //     var geoc = new BMap.Geocoder();
-        //     geoc.getLocation(e.point,
-        //         function mCallback(rs) {
-                    
-        //             var allPois = rs.surroundingPois; 
-        //             tag = 0;
-        //             for (i = 0; i < 5; i++) {
-        //                 if (map.getDistance(e.point, allPois[tag].point) > map.getDistance(e.point, allPois[i + 1].point))
-        //                     tag = i + 1;
-        //             }
-
-        //             var location = {
-        //                 lat: e.point.lat,
-        //                 lng: e.point.lng,
-        //                 poi: allPois[tag].title,
-        //                 address: allPois[tag].address,
-        //             }
-        //             console.log(location);
-        //             // $.ajax({
-        //             //     type: "POST",
-        //             //     url: "/bigdata/location/loc",
-        //             //     contentType: "application/json; charset=utf-8",
-        //             //     dataType: "json",
-        //             //     data: JSON.stringify(location),
-        //             //     success: function(msg) {
-        //             //         alert("success");
-        //             //     }
-        //             // });
-        //             //////////////////////////////////////
-        //             /////////////////////////////////////
-        //             alert(e.point.lng + " " + e.point.lat + " " + allPois[tag].title + " " + allPois[tag].address);
-        //         }, locationOptions);
-        // });
-
     }
 map.addEventListener("click", showInfo);
 
 
 $(document).ready(function() {
+    sendLocation();
     var str = $("#userid").val();
     console.log(str);
     console.log("str");
 
     //资源加载完成后定位到自己所在点
-    var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function(r) {
-        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-            var myIcon = new BMap.Icon("static/image/marker_blue.png", new BMap.Size(300, 157));
-            var mk = new BMap.Marker(r.point, {
-                icon: myIcon
-            });
-            map.addOverlay(mk);
-            alert('您的位置：' + r.point.lng + ',' + r.point.lng);
-            map.centerAndZoom(r.point, 20);
-        } else {
-            alert('failed' + this.getStatus());
-        }
+    $("#toMyMark").click(function(event) {
+        /* Act on the event */
+        MarkByData();
     });
-
-
-    $("#toMyMark").click(function() {
-        var geolocation = new BMap.Geolocation();
-        geolocation.getCurrentPosition(function(r) {
-            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-                var myIcon = new BMap.Icon("static/image/marker_blue.png", new BMap.Size(300, 157));
-                var mk = new BMap.Marker(r.point, {
-                    icon: myIcon
-                });
-                map.addOverlay(mk);
-                alert('您的位置：' + r.point.lng + ',' + r.point.lng);
-                map.panTo(r.point);
-                alert("ss");
-            } else {
-                alert('failed' + this.getStatus());
-            }
-        });
-    })
 });
 
 
