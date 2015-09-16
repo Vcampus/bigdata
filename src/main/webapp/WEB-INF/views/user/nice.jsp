@@ -27,12 +27,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<script src="static/js/jquery.js"></script>
   	<script src="static/js/jquery.mobile-1.4.5.min.js"></script>   
   	<script src="http://api.map.baidu.com/api?v=1.5&ak=ZvGx486DtaVtWrydYG5uOAPA"></script>  
+  	
+	
 
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="/bigdata/static/js/jquery.ui.touch-punch.min.js"></script>
+    
   </head>
   <body>
  	
  	<div data-role="page" id="homepage" >
-  <div data-role="header" data-position="fixed" data-fullscreen="true">
+    <div data-role="header" data-position="fixed" data-fullscreen="true">
     <a href="#info_page" title="打开设置" data-icon="grid" data-iconpos="left" data-transition="slide" data-direction="reverse">设置</a>
     <a href="" title="打开菜单" data-icon="grid" data-iconpos="left" id="test_btn" class="ui-btn-right">测试按钮</a>
     <h1>很高兴遇见你</h1>
@@ -67,10 +74,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="ui-block-c"></div>
     </div>
 
-    <form method="post">
+    <form method="post"  >
       <fieldset data-role="fieldcontain">
         <label for="sex" style="text-align: center;font-family: '微软雅黑';color: #FFFFFF">选择性别</label>
-        <select name="sex" id="sex">
+        <select name="sex" id="sex" value = "${user.sex}">
          <option value="boy">男</option>
          <option value="girl">女</option>
         </select>
@@ -105,19 +112,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <div id="content" >
      <div class="ui-grid-d">
-        <div class="ui-block-a"><div id="1" class="drag" ><p>旅游</p></div></div>
-        <div class="ui-block-b"><div id="2" class="drag " ><p>电影</p></div></div>
-        <div class="ui-block-c"><div id="3" class="drag" ><p>美食</p></div></div>
-        <div class="ui-block-d"><div id="4" class="drag" ><p>电影</p></div></div>
-        <div class="ui-block-e"><div id="5" class="drag" ><p>运动</p></div></div>
+        <div class="ui-block-a"><div id="1" class="drag ui-widget-content" ><p>旅游</p></div></div>
+        <div class="ui-block-b"><div id="2" class="drag ui-widget-content" ><p>电影</p></div></div>
+        <div class="ui-block-c"><div id="3" class="drag ui-widget-content" ><p>美食</p></div></div>
+        <div class="ui-block-d"><div id="4" class="drag ui-widget-content" ><p>电影</p></div></div>
+        <div class="ui-block-e"><div id="5" class="drag ui-widget-content" ><p>运动</p></div></div>
      </div>
 
      <div class="ui-grid-d">
-        <div class="ui-block-a"><div id="6" class="drag" ><p>购物狂</p></div></div>
-        <div class="ui-block-b"><div id="7" class="drag" ><p>手机控</p></div></div>
-        <div class="ui-block-c"><div id="8" class="drag" ><p>动漫</p></div></div>
-        <div class="ui-block-d"><div id="9" class="drag" ><p>K歌</p></div></div>
-        <div class="ui-block-e"><div id="10" class="drag" ><p>摄影</p></div></div>
+        <div class="ui-block-a"><div id="6" class="drag ui-widget-content" ><p>购物狂</p></div></div>
+        <div class="ui-block-b"><div id="7" class="drag ui-widget-content" ><p>手机控</p></div></div>
+        <div class="ui-block-c"><div id="8" class="drag ui-widget-content" ><p>动漫</p></div></div>
+        <div class="ui-block-d"><div id="9" class="drag ui-widget-content" ><p>K歌</p></div></div>
+        <div class="ui-block-e"><div id="10" class="drag ui-widget-content" ><p>摄影</p></div></div>
      </div>
 
     <div class="ui-block-a">
@@ -126,6 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
       </div>
       <div class="ui-block-c"></div>
+      <div><input type="button" id="subbutton" value="OK!" /></div> 
     </div>
     
 
@@ -141,13 +149,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <ul>
         <li><a href="#info_page" data-icon="info"  >个人信息</a></li>
         <li><a href="#habbit_page" data-icon="minus" class="ui-btn-active ui-state-persist">偏好设置</a></li>
+        
      </ul>
     </div>
 </div>
 <input id="userid" type="hidden" value="${user.id}">
 <input id="tag" type="hidden" value="${user.tag}"> 
+
 <script type="text/javascript">
   console.log("${user.id}");
+  console.log("${user.tag}");
 </script>
   </body>
 </html>

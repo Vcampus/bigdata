@@ -89,14 +89,36 @@ public class UserController {
 			 user =	userService.loginByAccoutAndPassword(name,password);
 			} catch(LoginException e){
 				e.printStackTrace();
-			}
-		   
-			
-			return  "redirect:/user/interest/?userid="+user.getId();
+			}			
+			return  "redirect:/user/nice/?userid="+user.getId();
 	}
 	
 	@RequestMapping("/nice")
-	public ModelAndView showMain(@RequestParam String tag,@RequestParam Integer userid){
+	public ModelAndView showMain(@RequestParam Integer userid){
+		User user =userService.findUserByID(userid);
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("/user/nice");
+		return mv;
+	}
+	@RequestMapping("/nice/info")
+	public ModelAndView showInfo(@RequestParam String sex,@RequestParam String work,@RequestParam Integer userid){
+		User user =userService.findUserByID(userid);
+		try {
+			userService.updateUserInfo(user.getId(),user.getAge(),sex,user.getTag(), work);
+		} catch (UpdateUserException e) {
+			
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("/user/nice");
+		return mv;
+	}
+	
+	@RequestMapping("/nice/interest")
+	public ModelAndView showInterest(@RequestParam String tag,@RequestParam Integer userid){
 		User user =userService.findUserByID(userid);
 		try {
 			userService.updateUserInfo(user.getId(), user.getAge(), user.getSex(),tag, user.getNickname());
@@ -110,6 +132,7 @@ public class UserController {
 		return mv;
 	}
 	
+
 	
 	@RequestMapping("/interest")
 	public ModelAndView showInterest(@RequestParam Integer userid)

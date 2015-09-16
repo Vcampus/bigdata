@@ -14,3 +14,22 @@
 .drag p{
 	color: #FFFFFF;
 }
+
+
+  #droppable
+  {
+    width: 150px;
+    height: 150px;
+    padding: 0.5em;
+    text-align: center;
+    
+    top:100ox;
+    left:100px;
+    
+  }
+  
+  #aaa img{border-radius:90px}
+  #content
+  {width:500px;
+  height:500px;
+  }

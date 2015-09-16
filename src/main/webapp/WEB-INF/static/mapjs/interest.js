@@ -14,6 +14,7 @@ $(document).ready(function() {
   hh.appendChild(ii);
   cc.appendChild(hh);
   
+  
 $(function() {
   var tags = $("#tag").val();
   var counts = tags.replace(/(.)(?=[^$])/g, "$1").split(","); //字符串转化为数组
@@ -94,7 +95,7 @@ $(function() {
     var input1 = document.createElement("input");
     input1.type = "text";
     input1.name = "userid";
-    input1.value = "${user.id}";
+    input1.value = ${user.id};
 
     // 将该输入框插入到 form 中  
     form1.appendChild(input);
@@ -103,7 +104,7 @@ $(function() {
     // form 的提交方式  
     form1.method = "POST";
     // form 提交路径  
-    form1.action = "/bigdata/user/nice";
+    form1.action = "/bigdata/user/nice/interset";
 
     // 对该 form 执行提交  
     form1.submit();
