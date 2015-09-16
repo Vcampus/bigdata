@@ -3,6 +3,8 @@ var map = new BMap.Map("map-home");
 
 //设置中心点和缩放级别
 map.centerAndZoom("南京",20);
+var tpoint = new BMap.Point(118.803484, 32.065714);
+
 
 
 //定时给服务器发送信息
@@ -15,7 +17,7 @@ function MarkByGps() {
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r) {
         if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-            var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+            var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
             var mk = new BMap.Marker(r.point, {
                 icon: myIcon
             });
@@ -36,7 +38,7 @@ function MarkByIP(){
 
 function MarkByName() {
     map.centerAndZoom("南京", 15);
-    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
     var mk = new BMap.Marker(r.point, {
         icon: myIcon
     });
@@ -45,17 +47,26 @@ function MarkByName() {
 
 function MarkByData() {
     var new_point = new BMap.Point(118.825115, 31.889903);
-    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+    var myIcon;
+    if($("#lock").text() == "lock"){
+        map.clearOverlays();   
+        var myIcon = new BMap.Icon("static/image/blue.gif", new BMap.Size(50, 60));
+    }
+    if($("#lock").text() == "unlock"){
+        map.clearOverlays();   
+        var myIcon = new BMap.Icon("static/image/shadow.png", new BMap.Size(50, 60));
+    }
+    
     var mk = new BMap.Marker(new_point, {
         icon: myIcon
     });
     map.addOverlay(mk); // 将标注添加到地图中
+    mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
     map.panTo(new_point);
 }
 
 //添加地图点击事件
 function showInfo(e) {
-    alert(e.point.lng + ", " + e.point.lat);
     console.log(e.point.lng);
     console.log(e.point.lat);
     console.log($("#userid").val());
@@ -104,9 +115,8 @@ function showInfo(e) {
             .done(function(msg) {
                 console.log(msg);
                 for (jsonmsg in msg) {
-                    ;
                     var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
-                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(300, 157));
+                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
                     var mk = new BMap.Marker(new_point, {
                         icon: myIcon
                     });
@@ -127,6 +137,76 @@ function showInfo(e) {
 map.addEventListener("click", showInfo);
 
 
+function showFriends(point) {
+    console.log(point.lng);
+    console.log(point.lat);
+    console.log($("#userid").val());
+
+    //获取最近点
+    var geocoder = new BMap.Geocoder();
+    var locationOptions = {
+        poiRadius: 500,
+        numPois: 5
+    }
+    geocoder.getLocation(point, function(result) {
+        var allPois = result.surroundingPois;
+        //获取附近的5个点
+        for (i = 0; i < allPois.length; i++) {
+            console.log(allPois[i].title);
+        }
+        tag = 4;
+
+        //获取5个点中最近的点
+        for (i = 0; i < allPois.length - 1; i++) {
+            if (map.getDistance(point, allPois[tag].point) > map.getDistance(point, allPois[i].point)) {
+                tag = i;
+            }
+        }
+
+        //组织要发送的数据
+        var location = {
+            lat: point.lat,
+            lng: point.lng,
+            userid: $("#userid").val(),
+            poi: allPois[tag].title,
+            address: allPois[tag].address,
+        }
+
+
+        console.log(allPois[tag].title);
+
+        // 发送数据
+        $.ajax({
+                url: '/bigdata/location/loc',
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(location),
+            })
+            .done(function(msg) {
+                console.log(msg);
+                for (jsonmsg in msg) {
+                    var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
+                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
+                    var mk = new BMap.Marker(new_point, {
+                        icon: myIcon
+                    });
+                    map.addOverlay(mk); // 将标注添加到地图中
+                }
+                console.log("success");
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+
+    }, locationOptions);
+}
+
+
 $(document).ready(function() {
     sendLocation();
     var str = $("#userid").val();
@@ -137,50 +217,76 @@ $(document).ready(function() {
     $("#toMyMark").click(function(event) {
         /* Act on the event */
         MarkByData();
+        var new_point = new BMap.Point(118.825115, 31.889903);
+        showFriends(new_point);
     });
-});
-
-
-
-$(document).ready(function($) {
-    $("#test_btn").click(function(event) {
+    //位置共享隐身按钮
+    $("#lock").click(function(event) {
         /* Act on the event */
-        // var geolocation = new BMap.Geolocation();
-        // geolocation.getCurrentPosition(function(r) {
-        //     var geoc = new BMap.Geocoder();
-        //     geoc.getLocation(r.point,
-        //         function mCallback(rs) {
-                    
-        //             var allPois = rs.surroundingPois; 
-        //             tag = 0;
-        //             for (i = 0; i < 5; i++) {
-        //                 if (map.getDistance(r.point, allPois[tag].point) > map.getDistance(r.point, allPois[i + 1].point))
-        //                     tag = i + 1;
-        //             }
+        console.log($("#lock").text());
+        if($("#lock").text() == "lock"){
+           $("#lock").text('unlock');
+           $("#lock").attr('style', 'background: #BE2121;border-color: #BE2121');
+           $("#toMyMark").click();
 
-        //             var location = {
-        //                 lat: r.point.lat,
-        //                 lng: r.point.lng,
-        //                 poi: allPois[tag].title,
-        //                 address: allPois[tag].address,
-        //             }
+        }
+        else{
+            $("#lock").text('lock');
+            $("#lock").attr('style', 'background: #1abc9c;border-color: #1abc9c');
+            $("#toMyMark").click();
+        }
 
-        //             $.ajax({
-        //                 type: "POST",
-        //                 url: "/bigdata/location/loc",
-        //                 contentType: "application/json; charset=utf-8",
-        //                 dataType: "json",
-        //                 data: JSON.stringify(location),
-        //                 success: function(msg) {
-        //                     alert("success");
-        //                 }
-        //             });
-        //             //////////////////////////////////////
-        //             /////////////////////////////////////
-        //             alert(r.point.lng + " " + r.point.lat + " " + allPois[tag].title + " " + allPois[tag].address);
-        //         }, locationOptions);
-        // });
-    
-    })
+    });
+
+    function searchFriends() {
+        console.log($("#userid").val());
+        //组织要发送的数据
+        var location = {
+            userid:$("#userid").val(),
+        }
+
+        // 发送数据
+        $.ajax({
+                url: '/bigdata/location/interest',
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(location),
+            })
+            .done(function(msg) {
+                console.log(msg);
+                for (jsonmsg in msg) {
+                    var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
+                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
+                    var mk = new BMap.Marker(new_point, {
+                        icon: myIcon
+                    });
+                    map.addOverlay(mk); // 将标注添加到地图中
+                }
+                console.log("success");
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    }
 
 });
+
+//centre:椭圆中心点,X:横向经度,Y:纵向纬度
+function add_oval(centre, x, y) {
+    var assemble = new Array();
+    var angle;
+    var dot;
+    var tangent = x / y;
+    for (i = 0; i < 36; i++) {
+        angle = (2 * Math.PI / 36) * i;
+        dot = new BMap.Point(centre.lng + Math.sin(angle) * y * tangent, centre.lat + Math.cos(angle) * y);
+        assemble.push(dot);
+    }
+    return assemble;
+}
+var oval = new BMap.Polygon(add_oval(tpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
+map.addOverlay(oval);
