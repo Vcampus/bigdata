@@ -16,6 +16,7 @@ public interface LocationService {
 	public List<Location> getNearbyLocation(double lat,double lng,int precision);
 	public List<User> getNearbyUser(int lid);
 	public Location qryLocationByAddress(String address, String poi);
+	public List<Location> getInterLocation(String userTags);
 	
 
 }
