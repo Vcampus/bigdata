@@ -13,7 +13,7 @@ $(document).ready(function() {
   ii.appendChild(jj);
   hh.appendChild(ii);
   cc.appendChild(hh);
-  
+});
   
 $(function() {
   var tags = $("#tag").val();
@@ -95,7 +95,7 @@ $(function() {
     var input1 = document.createElement("input");
     input1.type = "text";
     input1.name = "userid";
-    input1.value = ${user.id};
+    input1.value = "${user.id}";
 
     // 将该输入框插入到 form 中  
     form1.appendChild(input);
@@ -113,7 +113,5 @@ $(function() {
   });
 
 
-
-});
 
 });

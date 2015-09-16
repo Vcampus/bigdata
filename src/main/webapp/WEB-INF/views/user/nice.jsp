@@ -133,7 +133,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
       </div>
       <div class="ui-block-c"></div>
-      <div><input type="button" id="subbutton" value="OK!" /></div> 
     </div>
     
 
