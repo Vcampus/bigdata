@@ -95,7 +95,7 @@ public class LocationController {
     	spl = loco[4].split(":");
     	address = spl[1].substring(1, spl[1].length()-2);
     		
-    	Location locations = locationService.qryLocationByAddress(address);
+    	Location locations = locationService.qryLocationByAddress(address,poi);
     	if (locations == null){
     		locations = locationService.saveLocationBaiDu(lat, lng, poi, address);
     	}
@@ -109,6 +109,8 @@ public class LocationController {
     		loca = loca + "{"+"\"lat\":\""+locate.get(i).getLat()+"\",";
     		loca = loca + "\"lng\":\""+locate.get(i).getLng()+"\""+"},";
     		List<User> user = locationService.getNearbyUser(locate.get(i).getId());
+    		if (user.size()==0)
+    			locate.remove(i);
     		
     	}
     	loca = loca + "{"+"\"lat\":\""+locate.get(locate.size()-1).getLat()+"\",";

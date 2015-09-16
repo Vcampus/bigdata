@@ -15,7 +15,7 @@ public interface LocationService {
 	public Location saveLocationBaiDu(double lat,double lng,String poi,String address);
 	public List<Location> getNearbyLocation(double lat,double lng,int precision);
 	public List<User> getNearbyUser(int lid);
-	public Location qryLocationByAddress(String address);
+	public Location qryLocationByAddress(String address, String poi);
 	
 
 }
