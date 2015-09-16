@@ -49,7 +49,7 @@ function MarkByData() {
     var new_point = new BMap.Point(118.825115, 31.889903);
     var myIcon;
     if($("#lock").text() == "lock"){
-        var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
+        var myIcon = new BMap.Icon("static/image/blue.gif", new BMap.Size(50, 60));
     }
     if($("#lock").text() == "unlock"){
         var myIcon = new BMap.Icon("static/image/shadow.png", new BMap.Size(50, 60));
@@ -58,8 +58,8 @@ function MarkByData() {
     var mk = new BMap.Marker(new_point, {
         icon: myIcon
     });
-    mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
     map.addOverlay(mk); // 将标注添加到地图中
+    mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
     map.panTo(new_point);
 }
 
