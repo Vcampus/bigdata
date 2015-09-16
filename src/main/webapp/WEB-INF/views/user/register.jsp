@@ -34,7 +34,7 @@ alert(${message});
   
   	<div data-role="header" data-position="fixed">
     <h1>注册新用户</h1>
-    <a href="/bigdata/index/login" title="登录" data-icon="search" data-iconpos="right" data-transition="slide" >登录</a>
+    <a href="/bigdata/index/login" title="登录" data-icon="flat-man" data-iconpos="right" data-transition="slide" >登录</a>
   	</div>
 	
 	<div data-role="content">
