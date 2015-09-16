@@ -15,7 +15,7 @@ function MarkByGps() {
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r) {
         if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-            var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+            var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
             var mk = new BMap.Marker(r.point, {
                 icon: myIcon
             });
@@ -36,7 +36,7 @@ function MarkByIP(){
 
 function MarkByName() {
     map.centerAndZoom("南京", 15);
-    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
     var mk = new BMap.Marker(r.point, {
         icon: myIcon
     });
@@ -45,7 +45,14 @@ function MarkByName() {
 
 function MarkByData() {
     var new_point = new BMap.Point(118.825115, 31.889903);
-    var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(300, 157));
+    var myIcon;
+    if($("#lock").text() == "lock"){
+        var myIcon = new BMap.Icon("static/image/blue.png", new BMap.Size(50, 60));
+    }
+    if($("#lock").text() == "unlock"){
+        var myIcon = new BMap.Icon("static/image/shadow.png", new BMap.Size(50, 60));
+    }
+    
     var mk = new BMap.Marker(new_point, {
         icon: myIcon
     });
@@ -104,9 +111,8 @@ function showInfo(e) {
             .done(function(msg) {
                 console.log(msg);
                 for (jsonmsg in msg) {
-                    ;
                     var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
-                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(300, 157));
+                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
                     var mk = new BMap.Marker(new_point, {
                         icon: myIcon
                     });
@@ -138,49 +144,59 @@ $(document).ready(function() {
         /* Act on the event */
         MarkByData();
     });
-});
-
-
-
-$(document).ready(function($) {
-    $("#test_btn").click(function(event) {
+    //位置共享隐身按钮
+    $("#lock").click(function(event) {
         /* Act on the event */
-        // var geolocation = new BMap.Geolocation();
-        // geolocation.getCurrentPosition(function(r) {
-        //     var geoc = new BMap.Geocoder();
-        //     geoc.getLocation(r.point,
-        //         function mCallback(rs) {
-                    
-        //             var allPois = rs.surroundingPois; 
-        //             tag = 0;
-        //             for (i = 0; i < 5; i++) {
-        //                 if (map.getDistance(r.point, allPois[tag].point) > map.getDistance(r.point, allPois[i + 1].point))
-        //                     tag = i + 1;
-        //             }
+        console.log($("#lock").text());
+        if($("#lock").text() == "lock"){
+           $("#lock").text('unlock');
+           $("#lock").attr('style', 'background: #BE2121;border-color: #BE2121');
+           $("#toMyMark").click();
 
-        //             var location = {
-        //                 lat: r.point.lat,
-        //                 lng: r.point.lng,
-        //                 poi: allPois[tag].title,
-        //                 address: allPois[tag].address,
-        //             }
+        }
+        else{
+            $("#lock").text('lock');
+            $("#lock").attr('style', 'background: #1abc9c;border-color: #1abc9c');
+            $("#toMyMark").click();
+        }
 
-        //             $.ajax({
-        //                 type: "POST",
-        //                 url: "/bigdata/location/loc",
-        //                 contentType: "application/json; charset=utf-8",
-        //                 dataType: "json",
-        //                 data: JSON.stringify(location),
-        //                 success: function(msg) {
-        //                     alert("success");
-        //                 }
-        //             });
-        //             //////////////////////////////////////
-        //             /////////////////////////////////////
-        //             alert(r.point.lng + " " + r.point.lat + " " + allPois[tag].title + " " + allPois[tag].address);
-        //         }, locationOptions);
-        // });
-    
-    })
+    });
+
+    function searchFriends() {
+        console.log($("#userid").val());
+        //组织要发送的数据
+        var location = {
+            userid:$("#userid").val(),
+        }
+
+        // 发送数据
+        $.ajax({
+                url: '/bigdata/location/interest',
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(location),
+            })
+            .done(function(msg) {
+                console.log(msg);
+                for (jsonmsg in msg) {
+                    var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
+                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
+                    var mk = new BMap.Marker(new_point, {
+                        icon: myIcon
+                    });
+                    map.addOverlay(mk); // 将标注添加到地图中
+                }
+                console.log("success");
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    }
 
 });
+
+

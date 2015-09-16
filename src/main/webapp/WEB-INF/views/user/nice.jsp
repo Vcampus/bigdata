@@ -40,9 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	
  	<div data-role="page" id="homepage" >
     <div data-role="header" data-position="fixed" >
-    <a href="#info_page" title="打开设置" data-icon="grid" data-iconpos="left" data-transition="slide" data-direction="reverse">设置</a>
+    <a href="#info_page" title="打开设置" data-icon="flat-settings" data-iconpos="left" data-transition="slide" data-direction="reverse">设置</a>
     <h1>很高兴遇见你</h1>
-    <a href="search.html" title="搜索" data-icon="search" data-iconpos="right" data-transition="slide">雷达</a>
+    <a  title="搜索" data-icon="search" data-iconpos="right" data-transition="slide" id="search">雷达</a>
   </div>
 
   <div data-role="content">
@@ -50,8 +50,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" src="static/mapjs/homepage_map.js"></script>
   </div>
 
-  <div data-role="footer" data-position="fixed" data-fullscreen="true" id="toMyMark">
-    <h1>我的位置</h1>
+  <div data-role="footer" data-position="fixed" data-fullscreen="true" >
+    <div class="ui-grid-b">
+      <div class="ui-block-a"></div>
+      <div class="ui-block-b">
+        <div class="ui-grid-b">
+          <div class="ui-block-a">
+            <a role="button" class="ui-link ui-btn ui-btn-b ui-icon-flat-location ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" href="#" data-role="button" data-icon="flat-location" data-iconpos="notext" data-theme="b" data-inline="true" id="toMyMark">Location</a>
+          </div>
+          <div class="ui-block-b">
+            <a role="button" class="ui-link ui-btn ui-btn-b ui-icon-flat-lock ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" href="#" data-role="button" data-icon="flat-lock" data-iconpos="notext" data-theme="b" data-inline="true" id="lock" >lock</a>
+          </div>
+          <div class="ui-block-c">
+            <a role="button" class="ui-link ui-btn ui-btn-b ui-icon-flat-heart ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" href="#" data-role="button" data-icon="flat-heart" data-iconpos="notext" data-theme="b" data-inline="true" id="like">Heart</a>
+          </div>
+        </div>
+      </div>
+      <div class="ui-block-c"></div>
+    </div>
+
+    
+        
+        
+    
   </div>
 </div> 
 

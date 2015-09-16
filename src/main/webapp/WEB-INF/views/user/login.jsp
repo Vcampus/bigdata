@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   	<div data-role="header" data-position="fixed" >
     <h1>登录</h1>
-    <a href="/bigdata/index/register" title="注册新用户" data-icon="search" data-iconpos="right" data-transition="slide" data-direction="reverse">注册</a>
+    <a href="/bigdata/index/register" title="注册新用户" data-icon="flat-new" data-iconpos="right" data-transition="slide" data-direction="reverse">注册</a>
   	</div>
 	
 
