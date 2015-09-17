@@ -236,7 +236,7 @@ function searchFriends() {
                         console.log(hdata[jsonmsg]["lng"]);
                         console.log(hdata[jsonmsg]["lat"]);
                         var hpoint = new BMap.Point(hdata[jsonmsg]["lng"], hdata[jsonmsg]["lat"]);
-                        var hoval = new BMap.Polygon(add_oval(hpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
+                        var hoval = new BMap.Polygon(add_oval(hpoint,0.0004,0.0003), {strokeColor:"red", strokeWeight:1, strokeOpacity:0,fillColor: "red",fillOpacity: 0.5});
                         map.addOverlay(hoval);
                     }
                 }
@@ -310,5 +310,5 @@ function add_oval(centre, x, y) {
     }
     return assemble;
 }
-var oval = new BMap.Polygon(add_oval(tpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
-map.addOverlay(oval);
+// var oval = new BMap.Polygon(add_oval(tpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
+// map.addOverlay(oval);
