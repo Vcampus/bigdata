@@ -137,6 +137,8 @@ function showInfo(e) {
 map.addEventListener("click", showInfo);
 
 
+
+//显示离自己范围很近的区域内的朋友
 function showFriends(point) {
     console.log(point.lng);
     console.log(point.lat);
@@ -162,14 +164,14 @@ function showFriends(point) {
                 tag = i;
             }
         }
-
+        console.log(allPois[tag]);
         //组织要发送的数据
         var location = {
             lat: point.lat,
             lng: point.lng,
             userid: $("#userid").val(),
-            poi: allPois[tag].title,
-            address: allPois[tag].address,
+            poi: allPois[tag]["title"],
+            address: allPois[tag]["address"],
         }
 
 
@@ -206,6 +208,47 @@ function showFriends(point) {
     }, locationOptions);
 }
 
+//雷达搜索，上传当前位置，找到附近的爱好区域
+function searchFriends() {
+        console.log($("#userid").val());
+        //组织要发送的数据
+        var location = {
+            userid:$("#userid").val(),
+        }
+        console.log(location);
+        // 发送数据
+        $.ajax({
+                url: '/bigdata/location/interest',
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(location),
+            })
+            .done(function(msg) {
+                console.log(msg);
+                for(var i in msg){
+                    console.log(i);
+                    var hnum = i;//兴趣爱好
+                    var hdata = msg[""+i];
+                    for(jsonmsg in hdata){
+                        var opacity = (i+1)/10;
+                        console.log(hdata[jsonmsg]["poi"]);
+                        console.log(hdata[jsonmsg]["lng"]);
+                        console.log(hdata[jsonmsg]["lat"]);
+                        var hpoint = new BMap.Point(hdata[jsonmsg]["lng"], hdata[jsonmsg]["lat"]);
+                        var hoval = new BMap.Polygon(add_oval(hpoint,0.0020,0.0015), {strokeColor:"red", strokeWeight:6, strokeOpacity:0.5,fillColor: "red",fillOpacity: 0.5});
+                        map.addOverlay(hoval);
+                    }
+                }
+                console.log("success");
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    }
 
 $(document).ready(function() {
     sendLocation();
@@ -238,40 +281,19 @@ $(document).ready(function() {
 
     });
 
-    function searchFriends() {
-        console.log($("#userid").val());
-        //组织要发送的数据
-        var location = {
-            userid:$("#userid").val(),
-        }
+    $("#like").click(function(event) {
+        /* Act on the event */
+        console.log("搜索爱好者集中区域");
+        searchFriends();
+    });
 
-        // 发送数据
-        $.ajax({
-                url: '/bigdata/location/interest',
-                contentType: "application/json; charset=utf-8",
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(location),
-            })
-            .done(function(msg) {
-                console.log(msg);
-                for (jsonmsg in msg) {
-                    var new_point = new BMap.Point(msg[jsonmsg]["lng"], msg[jsonmsg]["lat"]);
-                    var myIcon = new BMap.Icon("static/image/red.png", new BMap.Size(50, 60));
-                    var mk = new BMap.Marker(new_point, {
-                        icon: myIcon
-                    });
-                    map.addOverlay(mk); // 将标注添加到地图中
-                }
-                console.log("success");
-            })
-            .fail(function() {
-                console.log("error");
-            })
-            .always(function() {
-                console.log("complete");
-            });
-    }
+    $("#search").click(function(event) {
+        /* Act on the event */
+        console.log("搜索爱好者集中区域");
+        searchFriends();
+    });
+
+    
 
 });
 

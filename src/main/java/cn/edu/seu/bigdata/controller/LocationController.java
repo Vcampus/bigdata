@@ -134,9 +134,8 @@ public class LocationController {
     @ResponseBody
     public Map<Integer, List<Location>> showInterest(@RequestBody String userid){
     String[] str = userid.split(":");    
-    str[1]=str[1].substring(1, str[1].length()-1);
-    System.out.print(str[1]);
-    
+    str[1]=str[1].substring(1, str[1].length()-2);
+    System.out.print("*************"+str[1]);
     int user_id = Integer.parseInt(str[1]);
     User user = userService.findUserByID(user_id);
     Map<Integer,List<Location> > mappedLocations = new HashMap<Integer, List<Location>>();
