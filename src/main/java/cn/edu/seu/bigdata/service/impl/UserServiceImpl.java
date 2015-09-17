@@ -1,5 +1,6 @@
 package cn.edu.seu.bigdata.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,7 @@ public class UserServiceImpl implements UserManageService{
 	public void deleteUSer(int uid) {
 		User user = userManageDAO.getByHQL("from User u where u.id=?", uid);
 		userManageDAO.deleteById(uid);			
+		
 		
 
 	}
@@ -177,7 +179,14 @@ public class UserServiceImpl implements UserManageService{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	public List<User> getAllUSer() {
+		// TODO Auto-generated method stub
+		List<User> users = userManageDAO.getListByHQL("from User u where u.id <>?", 0) ;
+		return users;
+	}
+
+
 	
 
 

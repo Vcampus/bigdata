@@ -1,5 +1,8 @@
 package cn.edu.seu.bigdata.service;
 
+import java.util.List;
+import java.util.Set;
+
 import cn.edu.seu.bigdata.bean.User;
 import cn.edu.seu.bigdata.exception.LoginException;
 import cn.edu.seu.bigdata.exception.RegisterException;
@@ -15,4 +18,5 @@ public interface UserManageService {
 	public User findUserByAccount(String Account) ;
 	public User findUserByID( int uid);
 	public void deleteUSer(int uid);
-}
+	public List<User> getAllUSer();
+} 

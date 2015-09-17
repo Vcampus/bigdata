@@ -74,5 +74,9 @@ public class UserServiceImplTest extends AbstractJUnit4SpringContextTests{
 			e.printStackTrace();
 		}
 	}
+	@Test 
+	public void testGetuser(){
+		userService.getAllUSer();
+	}
 
 }

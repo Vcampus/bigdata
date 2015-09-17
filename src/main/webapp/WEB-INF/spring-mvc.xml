@@ -33,7 +33,7 @@
 	<mvc:default-servlet-handler/>
 	
 	<!-- 定义无需Controller的url<->view直接映射 -->
-	<mvc:view-controller path="/login" view-name="login"/>
+	<mvc:view-controller path="/" view-name="/WEB-INF/views/login.jsp"/>
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
 </beans>

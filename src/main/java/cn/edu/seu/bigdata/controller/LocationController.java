@@ -18,6 +18,7 @@
 
 package cn.edu.seu.bigdata.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,18 +133,60 @@ public class LocationController {
     @RequestMapping(path="/interest",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Map<Integer, List<Location>> showInterest(@RequestBody String userid){
-    //	User user = userService.findUserByID(userid);
-    //	user.getTag();
+    String[] str = userid.split(":");    
+    str[1]=str[1].substring(1, str[1].length()-1);
+    System.out.print(str[1]);
+    
+    int user_id = Integer.parseInt(str[1]);
+    User user = userService.findUserByID(user_id);
+    Map<Integer,List<Location> > mappedLocations = new HashMap<Integer, List<Location>>();
+    Map<Integer,List<Location> > mappedLocation = new HashMap<Integer, List<Location>>();
+    
+    String[] tag =  user.getTag().split(",");
+    List<Location> loc= new ArrayList<Location>();
+    List <User> users = userService.getAllUSer();
+    for (int i=0;i<=10;i++)
+    {
+    	mappedLocations.put(i, loc);
+    }
+    
+    int count;
+    if (users.size()!=0){
+    	
+    
+    for (int i=0;i<users.size();i++)
+    {
+    	count=0;
+    	String[] tagQry = users.get(i).getTag().split(",");
+    	for (int j=0;j<10;j++)
+    	{
+    		if ((tag[j].equals(tagQry[j]))&&(tag[j].equals("1")))
+    			count++;
+    	}
+    	if ( count!=0 )
+    	{
+    		loc = mappedLocations.get(count);
+    		if (users.get(i).getLocation().size()!=0 && loc!=null)
+    		{
+       		loc.removeAll(users.get(i).getLocation());
+    		loc.addAll(users.get(i).getLocation());
+    		}
+    		mappedLocations.put(count, loc);
+    		
+    	}
+    }
+    }
+    
     	
     	List<Location> location = locationService.getNearbyLocation(31.892653, 118.835167, 1000);
     	List<Location> location1 = locationService.getNearbyLocation(39.881897, 116.454453, 1000);
-    	Map<Integer,List<Location> > mappedLocations = new HashMap<Integer, List<Location>>();
-    	mappedLocations.put(2, location);
-    	mappedLocations.put(3, location1);
+    	
+    	mappedLocation.put(2, location);
+    	mappedLocation.put(3, location1);
     	
     	
        	
-		return mappedLocations;
+		return mappedLocation;
     	
     	
     	
