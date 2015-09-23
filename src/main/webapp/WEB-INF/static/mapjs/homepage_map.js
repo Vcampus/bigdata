@@ -143,7 +143,7 @@ function showFriends(point) {
     console.log(point.lng);
     console.log(point.lat);
     console.log($("#userid").val());
-
+    
     //获取最近点
     var geocoder = new BMap.Geocoder();
     var locationOptions = {

@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
     <div id="content" >
-     <div class="ui-grid-d">
+    <!--  <div class="ui-grid-d">
         <div class="ui-block-a"><div id="1" class="drag ui-widget-content" ><p>旅游</p></div></div>
         <div class="ui-block-b"><div id="2" class="drag ui-widget-content" ><p>电影</p></div></div>
         <div class="ui-block-c"><div id="3" class="drag ui-widget-content" ><p>美食</p></div></div>
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="ui-block-b"><div id="7" class="drag ui-widget-content" ><p>手机控</p></div></div>
         <div class="ui-block-c"><div id="8" class="drag ui-widget-content" ><p>动漫</p></div></div>
         <div class="ui-block-d"><div id="9" class="drag ui-widget-content" ><p>K歌</p></div></div>
-        <div class="ui-block-e"><div id="10" class="drag ui-widget-content" ><p>摄影</p></div></div>
+        <div class="ui-block-e"><div id="10" class="drag ui-widget-content" ><p>摄影</p></div></div> -->
      </div>
 
     <div class="ui-block-a">
